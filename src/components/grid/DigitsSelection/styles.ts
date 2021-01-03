@@ -24,12 +24,10 @@ export const ArrowUp = styled.span`
   justify-content: center;
   align-items: center;
   top: -6px;
-
   width: 0;
   height: 0;
   border-left: 6px solid transparent;
   border-right: 6px solid transparent;
-
   border-bottom: 5px solid black;
 `;
 
@@ -39,4 +37,12 @@ export const DigitItem = styled.span`
   display: inline-flex;
   justify-content: center;
   align-items: center;
+`;
+
+export const ClearButton = styled.button`
+  position: absolute;
+  bottom: -19px;
+  width: 100%;
+  border: 1px solid black;
+  cursor: pointer;
 `;

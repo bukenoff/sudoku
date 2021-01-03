@@ -25,6 +25,9 @@ export const DigitsSelection: FC<DigitsSelectionProps> = ({
           {digit}
         </Styled.DigitItem>
       ))}
+      <Styled.ClearButton data-digit=" " onClick={onDigitClick} type="button">
+        Clear
+      </Styled.ClearButton>
     </Styled.Root>
   );
 };
