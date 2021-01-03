@@ -1,5 +1,6 @@
 import React, { FC, MouseEventHandler, useCallback } from 'react';
 import * as Styled from './styles';
+import { DIGITS } from '~/constants/digits';
 
 interface DigitsSelectionProps {
   setGuessedValue: (value: number) => void;
@@ -20,8 +21,13 @@ export const DigitsSelection: FC<DigitsSelectionProps> = ({
   return (
     <Styled.Root data-testid="digits_selection_root">
       <Styled.ArrowUp />
-      {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((digit) => (
-        <Styled.DigitItem key={digit} data-digit={digit} onClick={onDigitClick}>
+      {DIGITS.map((digit) => (
+        <Styled.DigitItem
+          key={digit}
+          data-digit={digit}
+          data-testid={`digits_${digit}`}
+          onClick={onDigitClick}
+        >
           {digit}
         </Styled.DigitItem>
       ))}
