@@ -1,6 +1,26 @@
 import styled from 'styled-components';
 
-export const Root = styled.li<{ is_resolved: boolean }>`
+const getColorBasedOnValue = (
+  is_resolved: boolean,
+  value: number | ' ',
+  guessed_value: number,
+): 'black' | 'red' => {
+  if (is_resolved) return 'black';
+
+  if (value !== guessed_value) {
+    return 'red';
+  }
+
+  return 'black';
+};
+
+interface RootProps {
+  is_resolved: boolean;
+  value: number | ' ';
+  guessed_value: number;
+}
+
+export const Root = styled.li<RootProps>`
   list-style: none;
   display: inline-flex;
   border: 1px solid black;
@@ -12,4 +32,9 @@ export const Root = styled.li<{ is_resolved: boolean }>`
   position: relative;
   user-select: none;
   background-color: ${({ is_resolved }) => (is_resolved ? '#efefef' : 'white')};
+
+  & span[data-testid='cell_value'] {
+    color: ${({ is_resolved, value, guessed_value }) =>
+      getColorBasedOnValue(is_resolved, value, guessed_value)};
+  }
 `;

@@ -23,13 +23,8 @@ export const Cell: FC<ICellProps> = ({ value, is_resolved }) => {
       <Styled.Root
         onClick={onCellClick}
         is_resolved={is_resolved}
-        style={{
-          borderColor: is_resolved
-            ? 'black'
-            : value === guessed_value
-            ? 'black'
-            : 'red',
-        }}
+        value={value}
+        guessed_value={guessed_value}
       >
         <span data-testid="cell_value">
           {is_resolved ? value : guessed_value || ' '}
