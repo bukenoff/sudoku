@@ -1,9 +1,14 @@
 import React, { FC } from 'react';
-import * as Styled from './styles';
 import { Link, useLocation, NavLink } from 'react-router-dom';
+import { BiPause, BiRevision, BiX } from 'react-icons/bi';
+import * as Styled from './styles';
+import { useStores } from '~/stores/stores.provider';
 
 export const Navbar: FC = () => {
   const { pathname } = useLocation();
+  const {
+    grid_store: { fetchGrid },
+  } = useStores();
 
   const is_game_page = pathname.includes('/game');
 
@@ -12,12 +17,32 @@ export const Navbar: FC = () => {
       <Styled.HomeLink>
         <Link to="/">Sudoku</Link>
       </Styled.HomeLink>
-      <Styled.ScoresLink>
-        <NavLink to="/scores" activeClassName="active">
-          Best Scores
-        </NavLink>
-      </Styled.ScoresLink>
-      {is_game_page && <div>contents</div>}
+      <Styled.RightPartWrapper>
+        <Styled.ScoresLink>
+          <NavLink to="/scores" activeClassName="active">
+            Best Scores
+          </NavLink>
+        </Styled.ScoresLink>
+        {is_game_page && (
+          <Styled.GameActionsWrapper>
+            <Styled.GameActionButton type="button" className="pause">
+              <BiPause /> Pause
+            </Styled.GameActionButton>
+            <Styled.GameActionButton type="button" className="clear">
+              <BiX />
+              Clear Grid
+            </Styled.GameActionButton>
+            <Styled.GameActionButton
+              type="button"
+              className="new_game"
+              onClick={fetchGrid}
+            >
+              <BiRevision />
+              New Game
+            </Styled.GameActionButton>
+          </Styled.GameActionsWrapper>
+        )}
+      </Styled.RightPartWrapper>
     </Styled.Root>
   );
 };
