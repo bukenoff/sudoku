@@ -10,8 +10,8 @@ interface Props {
 export const Grid: FC<Props> = ({ grid }) => {
   return (
     <Styled.Root>
-      {Object.values(grid).map((block) => (
-        <Block key={block} block={block} />
+      {Object.entries(grid).map(([key, value]) => (
+        <Block key={key} block={value} />
       ))}
     </Styled.Root>
   );

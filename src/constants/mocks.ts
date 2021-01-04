@@ -22,6 +22,9 @@ export const SUDOKU_GRID_MOCK = (): IGrid =>
           value: current_digit,
           is_resolved: !!Math.floor(Math.random() * 2),
           is_value_guessed: false,
+          guessed_value: 0,
+          block_index: current_block_index + 1,
+          cell_index: current_digit_index + 1,
         };
 
         return block;

@@ -2,15 +2,36 @@ import React, { FC, useState } from 'react';
 import ClickAwayListener from 'react-click-away-listener';
 import DigitsSelection from '../DigitsSelection';
 import * as Styled from './styles';
+import { CellIndexType, ICell } from '~/types';
+import { observer } from 'mobx-react-lite';
 
 export interface ICellProps {
   is_resolved: boolean;
   value: number;
+  guessed_value: ICell['guessed_value'];
+  block_index: ICell['block_index'];
+  cell_index: ICell['cell_index'];
+  clearGuessedValue: (
+    block_index: CellIndexType,
+    cell_index: CellIndexType,
+  ) => void;
+  setGuessedValue: (
+    block_index: CellIndexType,
+    cell_index: CellIndexType,
+    guessed_value: ICell['guessed_value'],
+  ) => void;
 }
 
-export const Cell: FC<ICellProps> = ({ value, is_resolved }) => {
+export const Cell: FC<ICellProps> = ({
+  value,
+  guessed_value,
+  block_index,
+  cell_index,
+  is_resolved,
+  setGuessedValue,
+  clearGuessedValue,
+}) => {
   const [is_selected, setSelected] = useState(false);
-  const [guessed_value, setGuessedValue] = useState(0);
 
   const shoul_display_digits_selection = is_resolved === false && is_selected;
 
@@ -30,7 +51,12 @@ export const Cell: FC<ICellProps> = ({ value, is_resolved }) => {
           {is_resolved ? value : guessed_value || ' '}
         </span>
         {shoul_display_digits_selection && (
-          <DigitsSelection setGuessedValue={setGuessedValue} />
+          <DigitsSelection
+            block_index={block_index}
+            cell_index={cell_index}
+            setGuessedValue={setGuessedValue}
+            clearGuessedValue={clearGuessedValue}
+          />
         )}
       </Styled.Root>
     </ClickAwayListener>
