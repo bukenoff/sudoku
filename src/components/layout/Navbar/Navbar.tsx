@@ -7,7 +7,7 @@ import { useStores } from '~/stores/stores.provider';
 export const Navbar: FC = () => {
   const { pathname } = useLocation();
   const {
-    grid_store: { fetchGrid },
+    grid_store: { fetchGrid, clearGrid },
   } = useStores();
 
   const is_game_page = pathname.includes('/game');
@@ -28,7 +28,11 @@ export const Navbar: FC = () => {
             <Styled.GameActionButton type="button" className="pause">
               <BiPause /> Pause
             </Styled.GameActionButton>
-            <Styled.GameActionButton type="button" className="clear">
+            <Styled.GameActionButton
+              type="button"
+              className="clear"
+              onClick={clearGrid}
+            >
               <BiX />
               Clear Grid
             </Styled.GameActionButton>
