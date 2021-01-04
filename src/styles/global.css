@@ -1,3 +1,27 @@
+:root {
+  --rich-black-fogra-29: #04080fff;
+  --snow: #fdf7faff;
+  --asparagus: #87a878ff;
+  --pearly-purple: #b27092ff;
+  --steel-blue: #4a7b9dff;
+}
+
 * {
   box-sizing: border-box;
+}
+
+body {
+  font-family: 'Lobster Two', cursive;
+}
+
+main {
+  background-color: var(--rich-black-fogra-29);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+}
+
+main section {
+  flex: 1;
 }

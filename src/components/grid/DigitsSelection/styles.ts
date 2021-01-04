@@ -9,12 +9,13 @@ export const Root = styled.div`
   position: absolute;
   bottom: -100px;
   left: -30px;
-  border: 1px solid black;
+  border: none;
   justify-content: space-between;
   align-items: stretch;
   user-select: none;
   z-index: 100;
   background-color: white;
+  box-shadow: 5px 5px 20px 0px rgba(0, 0, 0, 0.75);
 `;
 
 export const ArrowUp = styled.span`
@@ -41,8 +42,10 @@ export const DigitItem = styled.span`
 
 export const ClearButton = styled.button`
   position: absolute;
-  bottom: -19px;
+  bottom: -17px;
   width: 100%;
-  border: 1px solid black;
+  border: none;
   cursor: pointer;
+  color: var(--snow);
+  background-color: var(--pearly-purple);
 `;
