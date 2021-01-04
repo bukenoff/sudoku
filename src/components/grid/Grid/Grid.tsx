@@ -1,18 +1,17 @@
 import React, { FC } from 'react';
 import Block from '../Block';
 import * as Styled from './styles';
+import { IGrid } from '~/types';
 
 interface Props {
-  grid: any;
+  grid: IGrid;
 }
 
 export const Grid: FC<Props> = ({ grid }) => {
-  const blocks = Object.keys(grid);
-
   return (
     <Styled.Root>
-      {blocks.map((block) => (
-        <Block key={block} block={grid[+block]} />
+      {Object.values(grid).map((block) => (
+        <Block key={block} block={block} />
       ))}
     </Styled.Root>
   );

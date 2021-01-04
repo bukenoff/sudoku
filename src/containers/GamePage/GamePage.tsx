@@ -1,27 +1,25 @@
-import React, { FC } from 'react';
-import Cell from '~/components/grid/Cell';
-import DigitsSelection from '~/components/grid/DigitsSelection';
+import React, { FC, useEffect } from 'react';
+import { observer } from 'mobx-react-lite';
 import Grid from '~/components/grid/Grid';
 import { useStores } from '~/stores/stores.provider';
+import * as Styled from './styles';
 
-export const GamePage: FC = () => {
+export const GamePage: FC = observer(() => {
   const {
-    grid_store: { getGrid },
+    grid_store: { fetchGrid, grid, is_fetching },
   } = useStores();
 
-  const grid = getGrid();
+  useEffect(() => {
+    fetchGrid();
+  }, []);
 
   return (
-    <section
-      style={{
-        height: '100vh',
-        width: '100%',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
-      <Grid grid={grid} />
-    </section>
+    <Styled.Root>
+      {is_fetching ? (
+        <div style={{ color: 'white' }}>loading</div>
+      ) : (
+        <Grid grid={grid} />
+      )}
+    </Styled.Root>
   );
-};
+});

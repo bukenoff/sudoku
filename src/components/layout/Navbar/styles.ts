@@ -7,4 +7,12 @@ export const Root = styled.nav`
   justify-content: space-between;
   align-items: center;
   padding: 0 2rem;
+  font-size: 1.1rem;
+`;
+
+export const HomeLink = styled.span`
+  & a {
+    color: black;
+    text-decoration: none;
+  }
 `;
