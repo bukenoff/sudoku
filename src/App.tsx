@@ -9,6 +9,7 @@ import Footer from './components/layout/Footer';
 
 import './styles/reset.css';
 import './styles/global.css';
+import ScoresPage from './containers/ScoresPage';
 
 const App: FC = () => (
   <StoresProvider>
@@ -17,6 +18,7 @@ const App: FC = () => (
         <Navbar />
         <Route exact path="/" component={StartPage} />
         <Route path="/game" component={GamePage} />
+        <Route path="/scores" component={ScoresPage} />
         <Footer />
       </main>
     </BrowserRouter>

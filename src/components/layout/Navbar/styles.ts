@@ -16,3 +16,14 @@ export const HomeLink = styled.span`
     text-decoration: none;
   }
 `;
+
+export const ScoresLink = styled.span`
+  & a {
+    color: black;
+    text-decoration: none;
+
+    &.active {
+      color: white;
+    }
+  }
+`;
