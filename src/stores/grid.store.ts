@@ -1,9 +1,10 @@
 import { action, observable, makeObservable } from 'mobx';
 import { fetchSudokiGrid } from '~/constants/mocks';
 import { IGrid, CellIndexType, ICell } from '~/types';
+import { TimerStore } from './timer.store';
 
 export class GridStore {
-  constructor() {
+  constructor(private timer_store: TimerStore) {
     makeObservable(this);
   }
 
@@ -15,6 +16,8 @@ export class GridStore {
     this.is_fetching = true;
     this.grid = await fetchSudokiGrid();
     this.is_fetching = false;
+    this.timer_store.reset();
+    this.timer_store.unpause();
   };
 
   @action

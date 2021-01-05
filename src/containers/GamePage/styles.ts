@@ -6,4 +6,5 @@ export const Root = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 `;
