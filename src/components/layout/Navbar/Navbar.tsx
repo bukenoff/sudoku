@@ -1,4 +1,4 @@
-import React, { FC, useCallback } from 'react';
+import React, { FC, useCallback, useEffect } from 'react';
 import { Link, useLocation, NavLink } from 'react-router-dom';
 import { BiPause, BiRevision, BiX, BiPlay } from 'react-icons/bi';
 import * as Styled from './styles';
@@ -9,7 +9,7 @@ export const Navbar: FC = observer(() => {
   const { pathname } = useLocation();
   const {
     grid_store: { fetchGrid, clearGrid },
-    timer_store: { is_paused, pause, unpause, time },
+    timer_store: { is_paused, pause, unpause, time, reset },
   } = useStores();
 
   const is_game_page = pathname.includes('/game');
@@ -22,6 +22,12 @@ export const Navbar: FC = observer(() => {
 
     pause();
   }, [is_paused, pause, unpause]);
+
+  useEffect(() => {
+    if (is_game_page === false) {
+      reset();
+    }
+  }, [is_game_page]);
 
   return (
     <Styled.Root>
