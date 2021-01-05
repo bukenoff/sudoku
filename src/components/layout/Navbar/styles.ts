@@ -45,6 +45,11 @@ export const GameActionButton = styled.button`
   margin: 0 0.25rem;
   cursor: pointer;
   outline: none;
+  transition: transform 0.1s ease;
+
+  &:active {
+    transform: scale(0.9);
+  }
 
   &.pause {
     background-color: var(--steel-blue);
