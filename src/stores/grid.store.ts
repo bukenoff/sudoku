@@ -12,9 +12,9 @@ export class GridStore {
   @observable is_fetching = false;
 
   @action
-  fetchGrid = async (): Promise<void> => {
+  fetchGrid = async (difficulty: 'easy' | 'medium' | 'hard'): Promise<void> => {
     this.is_fetching = true;
-    this.grid = await fetchSudokiGrid();
+    this.grid = await fetchSudokiGrid(difficulty);
     this.is_fetching = false;
     this.timer_store.reset();
     this.timer_store.unpause();

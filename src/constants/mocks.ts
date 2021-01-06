@@ -1,5 +1,6 @@
 import { IGrid, IBlock } from '~/types';
 import { v4 as uuidv4 } from 'uuid';
+import { RESOLVED_CELLS_COUNT } from './sudoku';
 
 export const SUDOKU_MATRIX_MOCK = [
   [4, 3, 5, 6, 8, 2, 1, 9, 7],
@@ -13,30 +14,48 @@ export const SUDOKU_MATRIX_MOCK = [
   [8, 7, 4, 1, 3, 6, 2, 5, 9],
 ];
 
-export const SUDOKU_GRID_MOCK = (): IGrid =>
-  SUDOKU_MATRIX_MOCK.reduce((grid: any, current_block, current_block_index) => {
-    grid[current_block_index + 1] = current_block.reduce(
-      (block: any, current_digit, current_digit_index) => {
-        block[current_digit_index + 1] = {
-          id: uuidv4(),
-          value: current_digit,
-          is_resolved: !!Math.floor(Math.random() * 2),
-          is_value_guessed: false,
-          guessed_value: 0,
-          block_index: current_block_index + 1,
-          cell_index: current_digit_index + 1,
-        };
+export const SUDOKU_GRID_MOCK = (
+  difficulty: 'easy' | 'medium' | 'hard',
+): IGrid => {
+  let resolved_cells_left = RESOLVED_CELLS_COUNT[difficulty];
 
-        return block;
-      },
-      {},
-    );
+  return SUDOKU_MATRIX_MOCK.reduce(
+    (grid: any, current_block, current_block_index) => {
+      grid[current_block_index + 1] = current_block.reduce(
+        (block: any, current_digit, current_digit_index) => {
+          let is_resolved = false;
 
-    return grid;
-  }, {});
+          if (resolved_cells_left) {
+            is_resolved = !!Math.floor(Math.random() * 2);
+            if (is_resolved) {
+              resolved_cells_left -= 1;
+            }
+          }
 
-export const fetchSudokiGrid = (): Promise<IGrid> => {
+          block[current_digit_index + 1] = {
+            id: uuidv4(),
+            value: current_digit,
+            is_resolved,
+            is_value_guessed: false,
+            guessed_value: 0,
+            block_index: current_block_index + 1,
+            cell_index: current_digit_index + 1,
+          };
+
+          return block;
+        },
+        {},
+      );
+
+      return grid;
+    },
+    {},
+  );
+};
+export const fetchSudokiGrid = (
+  difficulty: 'easy' | 'medium' | 'hard',
+): Promise<IGrid> => {
   return new Promise((resolve) =>
-    setTimeout(() => resolve(SUDOKU_GRID_MOCK()), 1000),
+    setTimeout(() => resolve(SUDOKU_GRID_MOCK(difficulty)), 1000),
   );
 };

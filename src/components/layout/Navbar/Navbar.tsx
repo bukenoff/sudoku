@@ -1,5 +1,11 @@
 import React, { FC, useCallback, useEffect } from 'react';
-import { Link, useLocation, NavLink } from 'react-router-dom';
+import {
+  Link,
+  useLocation,
+  NavLink,
+  useParams,
+  useRouteMatch,
+} from 'react-router-dom';
 import { BiPause, BiRevision, BiX, BiPlay } from 'react-icons/bi';
 import * as Styled from './styles';
 import { useStores } from '~/stores/stores.provider';
@@ -7,6 +13,7 @@ import { observer } from 'mobx-react-lite';
 
 export const Navbar: FC = observer(() => {
   const { pathname } = useLocation();
+
   const {
     grid_store: { fetchGrid, clearGrid },
     timer_store: { is_paused, pause, unpause, time, reset },
@@ -70,7 +77,7 @@ export const Navbar: FC = observer(() => {
               <Styled.GameActionButton
                 type="button"
                 className="new_game"
-                onClick={fetchGrid}
+                onClick={() => fetchGrid('easy')}
               >
                 <BiRevision />
                 New Game

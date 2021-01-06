@@ -17,7 +17,7 @@ const App: FC = () => (
       <main>
         <Navbar />
         <Route exact path="/" component={StartPage} />
-        <Route path="/game" component={GamePage} />
+        <Route path="/game/:difficulty" component={GamePage} />
         <Route path="/scores" component={ScoresPage} />
         <Footer />
       </main>
