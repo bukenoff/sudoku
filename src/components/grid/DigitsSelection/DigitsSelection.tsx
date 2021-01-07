@@ -53,7 +53,11 @@ export const DigitsSelection: FC<IDigitsSelectionProps> = ({
           {digit}
         </Styled.DigitItem>
       ))}
-      <Styled.ClearButton data-digit=" " onClick={onClearClick} type="button">
+      <Styled.ClearButton
+        onClick={onClearClick}
+        type="button"
+        data-testid="digits_clear"
+      >
         Clear
       </Styled.ClearButton>
     </Styled.Root>

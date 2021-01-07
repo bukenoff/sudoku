@@ -4,27 +4,57 @@ import { DigitsSelection, IDigitsSelectionProps } from './DigitsSelection';
 
 describe('DigitsSelection component:', () => {
   it('should render without crash', () => {
-    const setGuessedValueMock = jest.fn();
-    const restProps = {} as IDigitsSelectionProps;
+    const setGuessedValueMock = jest.fn() as IDigitsSelectionProps['setGuessedValue'];
+    const clearGuessedValueMock = jest.fn() as IDigitsSelectionProps['clearGuessedValue'];
 
     const { getByTestId } = render(
-      <DigitsSelection {...restProps} setGuessedValue={setGuessedValueMock} />,
+      <DigitsSelection
+        block_index={1}
+        cell_index={5}
+        clearGuessedValue={clearGuessedValueMock}
+        setGuessedValue={setGuessedValueMock}
+      />,
     );
     const root_component = getByTestId('digits_selection_root');
     expect(root_component).toBeInTheDocument();
   });
 
   it('should render digits selection', () => {
-    const restProps = {} as IDigitsSelectionProps;
-    const setGuessedValueMock = jest.fn();
+    const setGuessedValueMock = jest.fn() as IDigitsSelectionProps['setGuessedValue'];
+    const clearGuessedValueMock = jest.fn() as IDigitsSelectionProps['clearGuessedValue'];
+
     const { getByTestId } = render(
-      <DigitsSelection {...restProps} setGuessedValue={setGuessedValueMock} />,
+      <DigitsSelection
+        block_index={1}
+        cell_index={5}
+        clearGuessedValue={clearGuessedValueMock}
+        setGuessedValue={setGuessedValueMock}
+      />,
     );
     const number_nine = getByTestId('digits_9');
 
     fireEvent.click(number_nine);
 
     expect(setGuessedValueMock).toBeCalled();
-    expect(setGuessedValueMock).toBeCalledWith(9);
+    expect(setGuessedValueMock).toBeCalledWith(1, 5, 9);
+  });
+
+  it('should call clearGuessedValue function', () => {
+    const setGuessedValueMock = jest.fn() as IDigitsSelectionProps['setGuessedValue'];
+    const clearGuessedValueMock = jest.fn() as IDigitsSelectionProps['clearGuessedValue'];
+
+    const { getByTestId } = render(
+      <DigitsSelection
+        block_index={1}
+        cell_index={5}
+        clearGuessedValue={clearGuessedValueMock}
+        setGuessedValue={setGuessedValueMock}
+      />,
+    );
+    const digits_clear_button = getByTestId('digits_clear');
+
+    fireEvent.click(digits_clear_button);
+
+    expect(clearGuessedValueMock).toBeCalled();
   });
 });
