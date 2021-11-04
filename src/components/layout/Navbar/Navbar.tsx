@@ -1,11 +1,5 @@
 import React, { FC, useCallback, useEffect } from 'react';
-import {
-  Link,
-  useLocation,
-  NavLink,
-  useParams,
-  useRouteMatch,
-} from 'react-router-dom';
+import { Link, useLocation, NavLink } from 'react-router-dom';
 import { BiPause, BiRevision, BiX, BiPlay } from 'react-icons/bi';
 import * as Styled from './styles';
 import { useStores } from '~/stores/stores.provider';

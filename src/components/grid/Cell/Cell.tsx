@@ -3,7 +3,6 @@ import ClickAwayListener from 'react-click-away-listener';
 import DigitsSelection from '../DigitsSelection';
 import * as Styled from './styles';
 import { CellIndexType, ICell } from '~/types';
-import { observer } from 'mobx-react-lite';
 
 export interface ICellProps {
   is_resolved: boolean;
@@ -32,11 +31,9 @@ export const Cell: FC<ICellProps> = ({
   clearGuessedValue,
 }) => {
   const [is_selected, setSelected] = useState(false);
-
   const shoul_display_digits_selection = is_resolved === false && is_selected;
 
   const onCellClick = () => setSelected(!is_selected);
-
   const onClickAway = () => setSelected(false);
 
   return (
