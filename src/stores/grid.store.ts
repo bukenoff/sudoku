@@ -1,5 +1,6 @@
 import { action, observable, makeObservable } from 'mobx';
 import { fetchSudokiGrid } from '~/constants/mocks';
+import { RESOLVED_CELLS_COUNT, TOTAL_CELLS_COUNT } from '~/constants/sudoku';
 import { IGrid, CellIndexType, ICell } from '~/types';
 import { TimerStore } from './timer.store';
 
@@ -11,10 +12,13 @@ export class GridStore {
   @observable grid: IGrid = {} as IGrid;
   @observable is_fetching = false;
   @observable mistakes_count = 0;
+  @observable unresolved_count = TOTAL_CELLS_COUNT;
+  @observable is_resolved = false;
 
   @action
   fetchGrid = async (difficulty: 'easy' | 'medium' | 'hard'): Promise<void> => {
     this.is_fetching = true;
+    this.unresolved_count -= RESOLVED_CELLS_COUNT[difficulty];
     this.grid = await fetchSudokiGrid(difficulty);
     this.is_fetching = false;
     this.timer_store.reset();
@@ -32,6 +36,11 @@ export class GridStore {
 
     if (guessed_right) {
       this.grid[block_index][cell_index].is_resolved = true;
+      this.unresolved_count -= 1;
+      if (this.unresolved_count === 0) {
+        this.is_resolved = true;
+        this.timer_store.stop();
+      }
     } else {
       this.mistakes_count += 1;
     }

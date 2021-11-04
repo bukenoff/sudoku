@@ -7,3 +7,5 @@ export const RESOLVED_CELLS_COUNT: {
   medium: 30,
   hard: 28,
 };
+
+export const TOTAL_CELLS_COUNT = 81;

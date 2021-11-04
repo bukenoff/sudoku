@@ -9,6 +9,7 @@ export class TimerStore {
 
   @observable time = 0;
   @observable is_paused = true;
+  @observable is_stopped = true;
 
   @action
   incrementTime = (): void => {
@@ -18,6 +19,8 @@ export class TimerStore {
   @action
   pause = (): void => {
     this.is_paused = true;
+    this.is_stopped = true;
+
     if (this.interval) {
       clearInterval(this.interval);
     }
@@ -35,5 +38,15 @@ export class TimerStore {
   unpause = (): void => {
     this.interval = setInterval(this.incrementTime, 1000);
     this.is_paused = false;
+    this.is_stopped = false;
+  };
+
+  @action
+  stop = (): void => {
+    this.is_stopped = true;
+
+    if (this.interval) {
+      clearInterval(this.interval);
+    }
   };
 }
