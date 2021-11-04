@@ -10,6 +10,7 @@ export class GridStore {
 
   @observable grid: IGrid = {} as IGrid;
   @observable is_fetching = false;
+  @observable mistakes_count = 0;
 
   @action
   fetchGrid = async (difficulty: 'easy' | 'medium' | 'hard'): Promise<void> => {
@@ -26,6 +27,13 @@ export class GridStore {
     cell_index: CellIndexType,
     guessed_value: ICell['guessed_value'],
   ): void => {
+    const guessed_right =
+      this.grid[block_index][cell_index].value === guessed_value;
+
+    if (!guessed_right) {
+      this.mistakes_count += 1;
+    }
+
     this.grid[block_index][cell_index].is_value_guessed = true;
     this.grid[block_index][cell_index].guessed_value = guessed_value;
   };
