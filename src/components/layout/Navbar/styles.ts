@@ -66,4 +66,5 @@ export const GameActionButton = styled.button`
 
 export const GameActionsWrapper = styled.div`
   display: flex;
+  margin-left: 20px;
 `;

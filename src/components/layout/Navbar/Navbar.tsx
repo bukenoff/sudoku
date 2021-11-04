@@ -15,7 +15,7 @@ export const Navbar: FC = observer(() => {
   const { pathname } = useLocation();
 
   const {
-    grid_store: { fetchGrid, clearGrid },
+    grid_store: { fetchGrid, clearGrid, mistakes_count },
     timer_store: { is_paused, pause, unpause, time, reset },
   } = useStores();
 
@@ -49,7 +49,8 @@ export const Navbar: FC = observer(() => {
         </Styled.ScoresLink>
         {is_game_page && (
           <>
-            <span style={{ width: 100 }}>Time: {time}</span>
+            <span style={{ width: 80 }}>Time: {time}</span>
+            <span>Mistakes made: {mistakes_count}</span>
             <Styled.GameActionsWrapper>
               <Styled.GameActionButton
                 type="button"
