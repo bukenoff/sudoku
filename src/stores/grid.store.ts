@@ -30,7 +30,9 @@ export class GridStore {
     const guessed_right =
       this.grid[block_index][cell_index].value === guessed_value;
 
-    if (!guessed_right) {
+    if (guessed_right) {
+      this.grid[block_index][cell_index].is_resolved = true;
+    } else {
       this.mistakes_count += 1;
     }
 
