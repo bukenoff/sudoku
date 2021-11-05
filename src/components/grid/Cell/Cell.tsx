@@ -43,6 +43,7 @@ export const Cell: FC<ICellProps> = ({
         is_resolved={is_resolved}
         value={value}
         guessed_value={guessed_value}
+        is_selected={is_selected}
       >
         <span data-testid="cell_value">
           {is_resolved ? value : guessed_value || ' '}

@@ -18,12 +18,14 @@ interface RootProps {
   is_resolved: boolean;
   value: number | ' ';
   guessed_value: number;
+  is_selected: boolean;
 }
 
 export const Root = styled.li<RootProps>`
   list-style: none;
   display: inline-flex;
-  border: 1px solid black;
+  border: ${({ is_selected }) =>
+    is_selected ? '3px solid var(--pearly-purple)' : '1px solid black'};
   height: 32px;
   width: 32px;
   justify-content: center;
@@ -35,6 +37,6 @@ export const Root = styled.li<RootProps>`
 
   & span[data-testid='cell_value'] {
     color: ${({ is_resolved, value, guessed_value }) =>
-      getColorBasedOnValue(is_resolved, value, guessed_value)};
+    getColorBasedOnValue(is_resolved, value, guessed_value)};
   }
 `;
