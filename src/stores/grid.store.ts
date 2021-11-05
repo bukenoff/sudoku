@@ -16,6 +16,14 @@ export class GridStore {
   @observable is_resolved = false;
 
   @action
+  checkIfResolved = (): void => {
+    if (this.unresolved_count > 0) return;
+
+    this.is_resolved = true;
+    this.timer_store.stop();
+  };
+
+  @action
   fetchGrid = async (difficulty: 'easy' | 'medium' | 'hard'): Promise<void> => {
     this.is_fetching = true;
     this.unresolved_count -= RESOLVED_CELLS_COUNT[difficulty];
@@ -37,16 +45,13 @@ export class GridStore {
     if (guessed_right) {
       this.grid[block_index][cell_index].is_resolved = true;
       this.unresolved_count -= 1;
-      if (this.unresolved_count === 0) {
-        this.is_resolved = true;
-        this.timer_store.stop();
-      }
     } else {
       this.mistakes_count += 1;
     }
 
     this.grid[block_index][cell_index].is_value_guessed = true;
     this.grid[block_index][cell_index].guessed_value = guessed_value;
+    this.checkIfResolved();
   };
 
   @action
