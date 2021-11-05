@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
 import Grid from '~/components/grid/Grid';
 import { useStores } from '~/stores/stores.provider';
@@ -13,8 +13,6 @@ export const GamePage: FC<
     grid_store: { fetchGrid, grid, is_fetching },
     timer_store: { is_paused },
   } = useStores();
-
-  console.log('MATCH', match);
 
   useEffect(() => {
     fetchGrid(match.params.difficulty);

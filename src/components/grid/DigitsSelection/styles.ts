@@ -32,12 +32,15 @@ export const ArrowUp = styled.span`
   border-bottom: 5px solid black;
 `;
 
-export const DigitItem = styled.span`
+export const DigitItem = styled.button`
   height: 28px;
   width: 28px;
   display: inline-flex;
   justify-content: center;
   align-items: center;
+  background-color: white;
+  border: none;
+  cursor: pointer;
 `;
 
 export const ClearButton = styled.button`
