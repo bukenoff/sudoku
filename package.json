@@ -15,8 +15,6 @@
   "author": "serik",
   "license": "ISC",
   "dependencies": {
-    "axios": "0.18.1",
-    "babel-polyfill": "^6.26.0",
     "mobx": "^6.0.4",
     "mobx-react-lite": "^3.1.6",
     "react": "^16.13.1",
@@ -62,8 +60,6 @@
     "optimize-css-assets-webpack-plugin": "^5.0.4",
     "prettier": "^2.1.2",
     "react-is": "^16.13.1",
-    "sass-loader": "^8.0.0",
-    "sass-resources-loader": "^2.0.1",
     "style-loader": "^0.23.0",
     "tap-spec": "^5.0.0",
     "tape": "^4.10.1",
