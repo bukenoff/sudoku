@@ -1,11 +1,13 @@
 import React, { FC, useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
+import { RouteComponentProps, useHistory } from 'react-router';
+
 import Grid from '~/components/grid/Grid';
 import { useStores } from '~/stores/stores.provider';
-import * as Styled from './styles';
 import PauseOverlay from '~/components/overlays/PauseOverlay';
-import { RouteComponentProps, useHistory } from 'react-router';
-import { Difficulty } from '~/models';
+import type { Difficulty } from '~/models';
+
+import * as Styled from './styles';
 
 type GamePageProps = RouteComponentProps<{ difficulty: Difficulty }>;
 

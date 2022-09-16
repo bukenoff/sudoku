@@ -1,5 +1,7 @@
-import { IGrid, IBlock } from '~/types';
 import { v4 as uuidv4 } from 'uuid';
+
+import type { IGrid } from '~/types';
+
 import { RESOLVED_CELLS_COUNT } from './sudoku';
 
 export const SUDOKU_MATRIX_MOCK = [

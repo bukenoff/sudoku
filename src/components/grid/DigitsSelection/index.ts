@@ -1,3 +1,1 @@
-import { DigitsSelection } from './DigitsSelection';
-
-export default DigitsSelection;
+export { DigitsSelection as default } from './DigitsSelection';

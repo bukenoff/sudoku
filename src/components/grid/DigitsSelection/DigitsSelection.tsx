@@ -1,7 +1,9 @@
 import React, { FC, MouseEventHandler, useCallback } from 'react';
-import * as Styled from './styles';
+
 import { DIGITS } from '~/constants/digits';
 import { CellIndexType, ICell } from '~/types';
+
+import * as Styled from './styles';
 
 export interface IDigitsSelectionProps {
   block_index: ICell['block_index'];

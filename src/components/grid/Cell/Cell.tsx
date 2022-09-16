@@ -1,8 +1,10 @@
 import React, { FC, useState } from 'react';
 import ClickAwayListener from 'react-click-away-listener';
+
+import type { CellIndexType, ICell } from '~/types';
+
 import DigitsSelection from '../DigitsSelection';
 import * as Styled from './styles';
-import { CellIndexType, ICell } from '~/types';
 
 export interface ICellProps {
   is_resolved: boolean;

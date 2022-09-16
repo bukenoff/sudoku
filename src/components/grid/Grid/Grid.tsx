@@ -1,7 +1,9 @@
 import React, { FC } from 'react';
+
+import type { IGrid } from '~/types';
+
 import Block from '../Block';
 import * as Styled from './styles';
-import { IGrid } from '~/types';
 
 interface Props {
   grid: IGrid;

@@ -1,4 +1,5 @@
 import { RESOLVED_CELLS_COUNT, TOTAL_CELLS_COUNT } from '~/constants/sudoku';
+
 import { GridStore } from '../grid.store';
 import { TimerStore } from '../timer.store';
 
@@ -18,7 +19,8 @@ describe('Grid store:', () => {
     const grid_store = new GridStore(timer_store);
 
     await grid_store.fetchGrid('easy');
-    const expected_unresolved_count = TOTAL_CELLS_COUNT - RESOLVED_CELLS_COUNT['easy'];
+    const expected_unresolved_count =
+      TOTAL_CELLS_COUNT - RESOLVED_CELLS_COUNT['easy'];
 
     expect(expected_unresolved_count).toEqual(grid_store.unresolved_count);
   });

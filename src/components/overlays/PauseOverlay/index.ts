@@ -1,3 +1,1 @@
-import { PauseOverlay } from './PauseOverlay';
-
-export default PauseOverlay;
+export { PauseOverlay as default } from './PauseOverlay';

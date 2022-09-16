@@ -1,3 +1,1 @@
-import { Cell } from './Cell';
-
-export default Cell;
+export { Cell as default } from './Cell';

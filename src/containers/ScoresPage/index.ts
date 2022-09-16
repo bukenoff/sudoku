@@ -1,3 +1,1 @@
-import { ScoresPage } from './ScoresPage';
-
-export default ScoresPage;
+export { ScoresPage as default } from './ScoresPage';

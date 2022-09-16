@@ -3,13 +3,12 @@ import { Route, BrowserRouter } from 'react-router-dom';
 
 import GamePage from './containers/GamePage';
 import StartPage from './containers/StartPage';
+import ScoresPage from './containers/ScoresPage';
 import { StoresProvider } from './stores/stores.provider';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
-
 import './styles/reset.css';
 import './styles/global.css';
-import ScoresPage from './containers/ScoresPage';
 
 const App: FC = () => (
   <StoresProvider>

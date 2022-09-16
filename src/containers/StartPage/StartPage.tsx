@@ -1,8 +1,9 @@
 import React, { FC } from 'react';
-import { Link, RouteComponentProps } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
 import * as Styled from './styles';
 
-export const StartPage: FC<RouteComponentProps> = () => {
+export const StartPage: FC = () => {
   return (
     <Styled.Root>
       <Styled.StartCta>start game</Styled.StartCta>

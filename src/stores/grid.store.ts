@@ -1,7 +1,9 @@
 import { action, observable, makeObservable } from 'mobx';
+
 import { fetchSudokiGrid } from '~/constants/mocks';
 import { RESOLVED_CELLS_COUNT, TOTAL_CELLS_COUNT } from '~/constants/sudoku';
-import { IGrid, CellIndexType, ICell } from '~/types';
+import type { IGrid, CellIndexType, ICell } from '~/types';
+
 import { TimerStore } from './timer.store';
 
 export class GridStore {

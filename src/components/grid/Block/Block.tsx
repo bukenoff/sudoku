@@ -1,9 +1,12 @@
 import React, { FC } from 'react';
+import { observer } from 'mobx-react-lite';
+
+import type { IBlock } from '~/types';
+import { useStores } from '~/stores';
+
 import Cell from '../Cell';
 import * as Styled from './styles';
-import { IBlock } from '~/types';
-import { useStores } from '~/stores/stores.provider';
-import { observer } from 'mobx-react-lite';
+
 export interface IBlockProps {
   block: IBlock;
 }
