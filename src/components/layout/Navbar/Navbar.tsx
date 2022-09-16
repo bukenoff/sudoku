@@ -4,19 +4,18 @@ import { BiPause, BiRevision, BiX, BiPlay } from 'react-icons/bi';
 import { observer } from 'mobx-react-lite';
 
 import { useStores } from '~/stores/stores.provider';
-import { GAME, HOME, SCORES } from '~/constants';
+import { HOME, SCORES } from '~/constants';
 
 import * as Styled from './styles';
 
 export const Navbar: FC = observer(() => {
   const { pathname } = useLocation();
-
   const {
-    grid_store: { fetchGrid, clearGrid, mistakes_count },
+    grid_store: { fetchGrid, clearGrid, mistakes_count, difficulty },
     timer_store: { is_paused, pause, unpause, time, reset },
   } = useStores();
 
-  const is_game_page = pathname.includes(GAME);
+  const is_game_page = pathname.includes('/game');
 
   const onPlayPauseClick = useCallback(() => {
     if (is_paused) {
@@ -26,6 +25,10 @@ export const Navbar: FC = observer(() => {
 
     pause();
   }, [is_paused, pause, unpause]);
+
+  const startNewGame = useCallback(() => {
+    !!difficulty && fetchGrid(difficulty);
+  }, [difficulty]);
 
   useEffect(() => {
     if (is_game_page === false) {
@@ -75,7 +78,7 @@ export const Navbar: FC = observer(() => {
               <Styled.GameActionButton
                 type="button"
                 className="new_game"
-                onClick={() => fetchGrid('easy')}
+                onClick={startNewGame}
               >
                 <BiRevision />
                 New Game

@@ -19,6 +19,7 @@ export class GridStore {
   @observable mistakes_count = 0;
   @observable unresolved_count = TOTAL_CELLS_COUNT;
   @observable is_resolved = false;
+  @observable difficulty: Difficulty | null = null;
 
   @action
   checkIfResolved = (): void => {
@@ -30,6 +31,7 @@ export class GridStore {
 
   @action
   fetchGrid = async (difficulty: Difficulty): Promise<void> => {
+    this.difficulty = difficulty;
     this.is_fetching = true;
     this.unresolved_count -= RESOLVED_CELLS_COUNT[difficulty];
     this.grid = await fetchSudokiGrid(difficulty);
