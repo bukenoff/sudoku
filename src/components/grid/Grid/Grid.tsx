@@ -5,11 +5,11 @@ import type { IGrid } from '~/types';
 import Block from '../Block';
 import * as Styled from './styles';
 
-interface Props {
+interface GridProps {
   grid: IGrid;
 }
 
-export const Grid: FC<Props> = ({ grid }) => {
+export const Grid: FC<GridProps> = ({ grid }) => {
   return (
     <Styled.Root>
       {Object.entries(grid).map(([key, value]) => (

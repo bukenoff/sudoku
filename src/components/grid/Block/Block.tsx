@@ -7,38 +7,27 @@ import { useStores } from '~/stores';
 import Cell from '../Cell';
 import * as Styled from './styles';
 
-export interface IBlockProps {
+export interface BlockProps {
   block: IBlock;
 }
 
-export const Block: FC<IBlockProps> = observer(({ block }) => {
-  const {
-    grid_store: { setGuessedValue, clearGuessedValue },
-  } = useStores();
+export const Block: FC<BlockProps> = observer(({ block }) => {
+  const { grid_store } = useStores();
 
   return (
     <Styled.Root>
-      {Object.values(block).map(
-        ({
-          id,
-          value,
-          guessed_value,
-          is_resolved,
-          block_index,
-          cell_index,
-        }) => (
-          <Cell
-            key={id}
-            is_resolved={is_resolved}
-            value={value}
-            guessed_value={guessed_value}
-            block_index={block_index}
-            cell_index={cell_index}
-            setGuessedValue={setGuessedValue}
-            clearGuessedValue={clearGuessedValue}
-          />
-        ),
-      )}
+      {Object.values(block).map((cell) => (
+        <Cell
+          key={cell.id}
+          is_resolved={cell.is_resolved}
+          value={cell.value}
+          guessed_value={cell.guessed_value}
+          block_index={cell.block_index}
+          cell_index={cell.cell_index}
+          setGuessedValue={grid_store.setGuessedValue}
+          clearGuessedValue={grid_store.clearGuessedValue}
+        />
+      ))}
     </Styled.Root>
   );
 });

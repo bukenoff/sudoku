@@ -1,12 +1,12 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 
-import { DigitsSelection, IDigitsSelectionProps } from './DigitsSelection';
+import { DigitsSelection, DigitsSelectionProps } from './DigitsSelection';
 
 describe('DigitsSelection component:', () => {
   it('should render without crash', () => {
-    const setGuessedValueMock = jest.fn() as IDigitsSelectionProps['setGuessedValue'];
-    const clearGuessedValueMock = jest.fn() as IDigitsSelectionProps['clearGuessedValue'];
+    const setGuessedValueMock = jest.fn() as DigitsSelectionProps['setGuessedValue'];
+    const clearGuessedValueMock = jest.fn() as DigitsSelectionProps['clearGuessedValue'];
 
     const { getByTestId } = render(
       <DigitsSelection
@@ -21,8 +21,8 @@ describe('DigitsSelection component:', () => {
   });
 
   it('should render digits selection', () => {
-    const setGuessedValueMock = jest.fn() as IDigitsSelectionProps['setGuessedValue'];
-    const clearGuessedValueMock = jest.fn() as IDigitsSelectionProps['clearGuessedValue'];
+    const setGuessedValueMock = jest.fn() as DigitsSelectionProps['setGuessedValue'];
+    const clearGuessedValueMock = jest.fn() as DigitsSelectionProps['clearGuessedValue'];
 
     const { getByTestId } = render(
       <DigitsSelection
@@ -41,8 +41,8 @@ describe('DigitsSelection component:', () => {
   });
 
   it('should call clearGuessedValue function', () => {
-    const setGuessedValueMock = jest.fn() as IDigitsSelectionProps['setGuessedValue'];
-    const clearGuessedValueMock = jest.fn() as IDigitsSelectionProps['clearGuessedValue'];
+    const setGuessedValueMock = jest.fn() as DigitsSelectionProps['setGuessedValue'];
+    const clearGuessedValueMock = jest.fn() as DigitsSelectionProps['clearGuessedValue'];
 
     const { getByTestId } = render(
       <DigitsSelection

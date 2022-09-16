@@ -1,29 +1,23 @@
 import React, { FC, useState } from 'react';
 import ClickAwayListener from 'react-click-away-listener';
 
-import type { CellIndexType, ICell } from '~/types';
+import { GridStore } from '~/stores';
+import type { ICell } from '~/types';
 
 import DigitsSelection from '../DigitsSelection';
 import * as Styled from './styles';
 
-export interface ICellProps {
+export interface CellProps {
   is_resolved: boolean;
   value: number;
   guessed_value: ICell['guessed_value'];
   block_index: ICell['block_index'];
   cell_index: ICell['cell_index'];
-  clearGuessedValue: (
-    block_index: CellIndexType,
-    cell_index: CellIndexType,
-  ) => void;
-  setGuessedValue: (
-    block_index: CellIndexType,
-    cell_index: CellIndexType,
-    guessed_value: ICell['guessed_value'],
-  ) => void;
+  clearGuessedValue: typeof GridStore.prototype.clearGuessedValue;
+  setGuessedValue: typeof GridStore.prototype.setGuessedValue;
 }
 
-export const Cell: FC<ICellProps> = ({
+export const Cell: FC<CellProps> = ({
   value,
   guessed_value,
   block_index,
@@ -33,7 +27,7 @@ export const Cell: FC<ICellProps> = ({
   clearGuessedValue,
 }) => {
   const [is_selected, setSelected] = useState(false);
-  const shoul_display_digits_selection = is_resolved === false && is_selected;
+  const display_digits_selection = is_resolved === false && is_selected;
 
   const onCellClick = () => setSelected(!is_selected);
   const onClickAway = () => setSelected(false);
@@ -50,7 +44,7 @@ export const Cell: FC<ICellProps> = ({
         <span data-testid="cell_value">
           {is_resolved ? value : guessed_value || ' '}
         </span>
-        {shoul_display_digits_selection && (
+        {display_digits_selection && (
           <DigitsSelection
             block_index={block_index}
             cell_index={cell_index}

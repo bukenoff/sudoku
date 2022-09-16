@@ -5,7 +5,7 @@ import { RouteComponentProps, useHistory } from 'react-router';
 import Grid from '~/components/grid/Grid';
 import { useStores } from '~/stores/stores.provider';
 import PauseOverlay from '~/components/overlays/PauseOverlay';
-import type { Difficulty } from '~/models';
+import type { Difficulty } from '~/types';
 
 import * as Styled from './styles';
 

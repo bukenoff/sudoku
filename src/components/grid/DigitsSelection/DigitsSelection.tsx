@@ -1,25 +1,19 @@
 import React, { FC, MouseEventHandler, useCallback } from 'react';
 
 import { DIGITS } from '~/constants/digits';
-import { CellIndexType, ICell } from '~/types';
+import { GridStore } from '~/stores';
+import type { ICell } from '~/types';
 
 import * as Styled from './styles';
 
-export interface IDigitsSelectionProps {
+export interface DigitsSelectionProps {
   block_index: ICell['block_index'];
   cell_index: ICell['cell_index'];
-  clearGuessedValue: (
-    block_index: CellIndexType,
-    cell_index: CellIndexType,
-  ) => void;
-  setGuessedValue: (
-    block_index: CellIndexType,
-    cell_index: CellIndexType,
-    guessed_value: ICell['guessed_value'],
-  ) => void;
+  clearGuessedValue: typeof GridStore.prototype.clearGuessedValue;
+  setGuessedValue: typeof GridStore.prototype.setGuessedValue;
 }
 
-export const DigitsSelection: FC<IDigitsSelectionProps> = ({
+export const DigitsSelection: FC<DigitsSelectionProps> = ({
   block_index,
   cell_index,
   setGuessedValue,

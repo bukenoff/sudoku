@@ -1,12 +1,12 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 
-import { Cell, ICellProps } from './Cell';
+import { Cell, CellProps } from './Cell';
 
 describe('Cell component:', () => {
   it('should render without crash', () => {
-    const setGuessedValueMock = jest.fn() as ICellProps['setGuessedValue'];
-    const clearGuessedValueMock = jest.fn() as ICellProps['clearGuessedValue'];
+    const setGuessedValueMock = jest.fn() as CellProps['setGuessedValue'];
+    const clearGuessedValueMock = jest.fn() as CellProps['clearGuessedValue'];
 
     const { getByTestId } = render(
       <Cell
@@ -24,8 +24,8 @@ describe('Cell component:', () => {
   });
 
   it('should not render value', () => {
-    const setGuessedValueMock = jest.fn() as ICellProps['setGuessedValue'];
-    const clearGuessedValueMock = jest.fn() as ICellProps['clearGuessedValue'];
+    const setGuessedValueMock = jest.fn() as CellProps['setGuessedValue'];
+    const clearGuessedValueMock = jest.fn() as CellProps['clearGuessedValue'];
 
     const { getByTestId } = render(
       <Cell
@@ -43,8 +43,8 @@ describe('Cell component:', () => {
   });
 
   it('should render digits selection', () => {
-    const setGuessedValueMock = jest.fn() as ICellProps['setGuessedValue'];
-    const clearGuessedValueMock = jest.fn() as ICellProps['clearGuessedValue'];
+    const setGuessedValueMock = jest.fn() as CellProps['setGuessedValue'];
+    const clearGuessedValueMock = jest.fn() as CellProps['clearGuessedValue'];
 
     const { getByTestId } = render(
       <Cell
@@ -67,8 +67,8 @@ describe('Cell component:', () => {
   });
 
   it('should highlight value red when it is not equal to guessed value', () => {
-    const setGuessedValueMock = jest.fn() as ICellProps['setGuessedValue'];
-    const clearGuessedValueMock = jest.fn() as ICellProps['clearGuessedValue'];
+    const setGuessedValueMock = jest.fn() as CellProps['setGuessedValue'];
+    const clearGuessedValueMock = jest.fn() as CellProps['clearGuessedValue'];
 
     const { getByTestId } = render(
       <Cell

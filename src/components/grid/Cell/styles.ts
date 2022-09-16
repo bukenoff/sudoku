@@ -37,6 +37,6 @@ export const Root = styled.li<RootProps>`
 
   & span[data-testid='cell_value'] {
     color: ${({ is_resolved, value, guessed_value }) =>
-    getColorBasedOnValue(is_resolved, value, guessed_value)};
+      getColorBasedOnValue(is_resolved, value, guessed_value)};
   }
 `;

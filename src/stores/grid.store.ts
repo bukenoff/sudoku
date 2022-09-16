@@ -2,7 +2,7 @@ import { action, observable, makeObservable } from 'mobx';
 
 import { fetchSudokiGrid } from '~/constants/mocks';
 import { RESOLVED_CELLS_COUNT, TOTAL_CELLS_COUNT } from '~/constants/sudoku';
-import type { IGrid, CellIndexType, ICell } from '~/types';
+import type { IGrid, CellIndexType, ICell, Difficulty } from '~/types';
 
 import { TimerStore } from './timer.store';
 
@@ -26,7 +26,7 @@ export class GridStore {
   };
 
   @action
-  fetchGrid = async (difficulty: 'easy' | 'medium' | 'hard'): Promise<void> => {
+  fetchGrid = async (difficulty: Difficulty): Promise<void> => {
     this.is_fetching = true;
     this.unresolved_count -= RESOLVED_CELLS_COUNT[difficulty];
     this.grid = await fetchSudokiGrid(difficulty);
