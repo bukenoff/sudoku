@@ -31,9 +31,8 @@ export const Navbar: FC = observer(() => {
   }, [difficulty]);
 
   useEffect(() => {
-    if (is_game_page === false) {
-      reset();
-    }
+    if (is_game_page) return;
+    reset();
   }, [is_game_page]);
 
   return (
