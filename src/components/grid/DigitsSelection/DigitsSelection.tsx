@@ -1,6 +1,6 @@
 import React, { FC, MouseEventHandler, useCallback } from 'react';
 
-import { DIGITS } from '~/constants/digits';
+import { DIGITS } from '~/constants';
 import { GridStore } from '~/stores';
 import type { ICell } from '~/types';
 

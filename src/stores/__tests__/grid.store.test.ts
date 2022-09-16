@@ -1,4 +1,4 @@
-import { RESOLVED_CELLS_COUNT, TOTAL_CELLS_COUNT } from '~/constants/sudoku';
+import { RESOLVED_CELLS_COUNT, TOTAL_CELLS_COUNT } from '~/constants';
 
 import { GridStore } from '../grid.store';
 import { TimerStore } from '../timer.store';

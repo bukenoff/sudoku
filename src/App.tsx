@@ -9,15 +9,16 @@ import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import './styles/reset.css';
 import './styles/global.css';
+import { HOME, GAME, SCORES } from './constants';
 
 const App: FC = () => (
   <StoresProvider>
     <BrowserRouter>
       <main>
         <Navbar />
-        <Route exact path="/" component={StartPage} />
-        <Route path="/game/:difficulty" component={GamePage} />
-        <Route path="/scores" component={ScoresPage} />
+        <Route exact path={HOME} component={StartPage} />
+        <Route path={GAME} component={GamePage} />
+        <Route path={SCORES} component={ScoresPage} />
         <Footer />
       </main>
     </BrowserRouter>

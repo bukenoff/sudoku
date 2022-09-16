@@ -4,6 +4,7 @@ import { BiPause, BiRevision, BiX, BiPlay } from 'react-icons/bi';
 import { observer } from 'mobx-react-lite';
 
 import { useStores } from '~/stores/stores.provider';
+import { GAME, HOME, SCORES } from '~/constants';
 
 import * as Styled from './styles';
 
@@ -15,7 +16,7 @@ export const Navbar: FC = observer(() => {
     timer_store: { is_paused, pause, unpause, time, reset },
   } = useStores();
 
-  const is_game_page = pathname.includes('/game');
+  const is_game_page = pathname.includes(GAME);
 
   const onPlayPauseClick = useCallback(() => {
     if (is_paused) {
@@ -35,11 +36,11 @@ export const Navbar: FC = observer(() => {
   return (
     <Styled.Root>
       <Styled.HomeLink>
-        <Link to="/">Sudoku</Link>
+        <Link to={HOME}>Sudoku</Link>
       </Styled.HomeLink>
       <Styled.RightPartWrapper>
         <Styled.ScoresLink>
-          <NavLink to="/scores" activeClassName="active">
+          <NavLink to={SCORES} activeClassName="active">
             Best Scores
           </NavLink>
         </Styled.ScoresLink>

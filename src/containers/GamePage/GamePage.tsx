@@ -8,6 +8,7 @@ import PauseOverlay from '~/components/overlays/PauseOverlay';
 import type { Difficulty } from '~/types';
 
 import * as Styled from './styles';
+import { SCORES } from '~/constants';
 
 type GamePageProps = RouteComponentProps<{ difficulty: Difficulty }>;
 
@@ -24,7 +25,7 @@ export const GamePage: FC<GamePageProps> = observer(({ match }) => {
   }, []);
 
   useEffect(() => {
-    is_resolved && history.push('/scores');
+    is_resolved && history.push(SCORES);
   }, [is_resolved]);
 
   return (
