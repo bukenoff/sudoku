@@ -35,7 +35,18 @@ export const Root = styled.li<RootProps>`
   user-select: none;
   background-color: ${({ is_resolved }) => (is_resolved ? '#efefef' : 'white')};
 
-  & span[data-testid='cell_value'] {
+  & span[data-testid='cell_value'] input {
+    outline: none;
+    cursor: pointer;
+    caret-color: transparent;
+    width: 32px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    display: inline;
+    background: transparent;
+    text-align: center;
+
     color: ${({ is_resolved, value, guessed_value }) =>
       getColorBasedOnValue(is_resolved, value, guessed_value)};
   }
