@@ -2,21 +2,27 @@ import { action, observable, makeObservable } from 'mobx';
 
 export class TimerStore {
   interval: ReturnType<typeof setInterval> | null = null;
+  time = 0;
+  is_paused = true;
+  is_stopped = true;
 
   constructor() {
-    makeObservable(this);
+    makeObservable(this, {
+      time: observable,
+      is_paused: observable,
+      is_stopped: observable,
+      incrementTime: action,
+      pause: action,
+      reset: action,
+      unpause: action,
+      stop: action,
+    });
   }
 
-  @observable time = 0;
-  @observable is_paused = true;
-  @observable is_stopped = true;
-
-  @action
   incrementTime = (): void => {
     this.time += 1;
   };
 
-  @action
   pause = (): void => {
     this.is_paused = true;
     this.is_stopped = true;
@@ -26,7 +32,6 @@ export class TimerStore {
     }
   };
 
-  @action
   reset = (): void => {
     this.time = 0;
     if (this.interval) {
@@ -34,14 +39,12 @@ export class TimerStore {
     }
   };
 
-  @action
   unpause = (): void => {
     this.interval = setInterval(this.incrementTime, 1000);
     this.is_paused = false;
     this.is_stopped = false;
   };
 
-  @action
   stop = (): void => {
     this.is_stopped = true;
 

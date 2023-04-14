@@ -10,18 +10,29 @@ import type { IGrid, CellIndexType, ICell, Difficulty } from '~/types';
 import { TimerStore } from './timer.store';
 
 export class GridStore {
+  grid: IGrid = {} as IGrid;
+  is_fetching = false;
+  mistakes_count = 0;
+  unresolved_count = TOTAL_CELLS_COUNT;
+  is_resolved = false;
+  difficulty: Difficulty | null = null;
+
   constructor(private timer_store: TimerStore) {
-    makeObservable(this);
+    makeObservable(this, {
+      grid: observable,
+      is_fetching: observable,
+      mistakes_count: observable,
+      unresolved_count: observable,
+      is_resolved: observable,
+      difficulty: observable,
+      checkIfResolved: action,
+      fetchGrid: action,
+      setGuessedValue: action,
+      clearGuessedValue: action,
+      clearGrid: action,
+    });
   }
 
-  @observable grid: IGrid = {} as IGrid;
-  @observable is_fetching = false;
-  @observable mistakes_count = 0;
-  @observable unresolved_count = TOTAL_CELLS_COUNT;
-  @observable is_resolved = false;
-  @observable difficulty: Difficulty | null = null;
-
-  @action
   checkIfResolved = (): void => {
     if (this.unresolved_count > 0) return;
 
@@ -29,7 +40,6 @@ export class GridStore {
     this.timer_store.stop();
   };
 
-  @action
   fetchGrid = async (difficulty: Difficulty): Promise<void> => {
     this.difficulty = difficulty;
     this.is_fetching = true;
@@ -40,7 +50,6 @@ export class GridStore {
     this.timer_store.unpause();
   };
 
-  @action
   setGuessedValue = (
     block_index: CellIndexType,
     cell_index: CellIndexType,
@@ -61,7 +70,6 @@ export class GridStore {
     this.checkIfResolved();
   };
 
-  @action
   clearGuessedValue = (
     block_index: CellIndexType,
     cell_index: CellIndexType,
@@ -70,7 +78,6 @@ export class GridStore {
     this.grid[block_index][cell_index].guessed_value = 0;
   };
 
-  @action
   clearGrid = (): void => {
     const block_indexes = (Object.keys(
       this.grid,
