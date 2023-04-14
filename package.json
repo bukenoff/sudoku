@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "description": "greatest boilerplate you can ever find",
   "main": "src/index.js",
+  "type": "module",
   "scripts": {
-    "build": "NODE_ENV=production webpack --mode production",
-    "start": "NODE_ENV=development webpack-dev-server --mode development --devtool inline-source-map --hot",
+    "start": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
     "test": "jest",
     "test:watch": "jest --watchAll"
   },
