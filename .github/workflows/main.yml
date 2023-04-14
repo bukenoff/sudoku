@@ -1,0 +1,35 @@
+name: Sudoku app CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  install:
+    name: 'install'
+    runs-on: node:16-alpine
+    steps:
+      - run: yarn
+
+  test:
+    name: 'test'
+    runs-on: node:16-alpine
+    steps:
+      - run: yarn test
+
+  build:
+    name: 'build'
+    runs-on: node:16-alpine
+    steps:
+      - run: yarn build
+
+  deploy:
+    name: 'deploy'
+    runs-on: node:16-alpine
+    steps:
+      - run: echo "Deploying..."
+      - run: npm i -g surge
+      - run: surge --project ./dist --domain sudokuapp.surge.sh
+      - run: echo "DEPLOY DONE HURRAY"
