@@ -7,9 +7,7 @@
     "build": "NODE_ENV=production webpack --mode production",
     "start": "NODE_ENV=development webpack-dev-server --mode development --devtool inline-source-map --hot",
     "test": "jest",
-    "test:watch": "jest --watchAll",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "test:watch": "jest --watchAll"
   },
   "keywords": [],
   "author": "serik",
