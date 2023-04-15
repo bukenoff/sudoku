@@ -17,13 +17,15 @@ jobs:
     name: 'test'
     runs-on: ubuntu-latest
     steps:
-      - run: cd sudoku
+      - uses: actions/checkout@v2
+      - run: cd sudoku/
       - run: yarn test
 
   build:
     name: 'build'
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - run: cd sudoku
       - run: yarn build
 
@@ -31,6 +33,7 @@ jobs:
     name: 'deploy'
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - run: cd sudoku
       - run: echo "Deploying..."
       - run: npm i -g surge
