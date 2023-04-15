@@ -17,18 +17,21 @@ jobs:
     name: 'test'
     runs-on: ubuntu-latest
     steps:
+      - run: cd sudoku/sudoku
       - run: yarn test
 
   build:
     name: 'build'
     runs-on: ubuntu-latest
     steps:
+      - run: cd sudoku/sudoku
       - run: yarn build
 
   deploy:
     name: 'deploy'
     runs-on: ubuntu-latest
     steps:
+      - run: cd sudoku/sudoku
       - run: echo "Deploying..."
       - run: npm i -g surge
       - run: surge --project ./dist --domain sudokuapp.surge.sh
