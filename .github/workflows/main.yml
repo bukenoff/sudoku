@@ -11,32 +11,24 @@ jobs:
     name: 'install'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - run: ls
       - run: yarn
 
   test:
     name: 'test'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - run: cd sudoku/
       - run: yarn test
 
   build:
     name: 'build'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - run: cd sudoku
       - run: yarn build
 
   deploy:
     name: 'deploy'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - run: cd sudoku
       - run: echo "Deploying..."
       - run: npm i -g surge
       - run: surge --project ./dist --domain sudokuapp.surge.sh
