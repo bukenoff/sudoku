@@ -9,25 +9,25 @@ on:
 jobs:
   install:
     name: 'install'
-    runs-on: node:16-alpine
+    runs-on: ubuntu-latest
     steps:
       - run: yarn
 
   test:
     name: 'test'
-    runs-on: node:16-alpine
+    runs-on: ubuntu-latest
     steps:
       - run: yarn test
 
   build:
     name: 'build'
-    runs-on: node:16-alpine
+    runs-on: ubuntu-latest
     steps:
       - run: yarn build
 
   deploy:
     name: 'deploy'
-    runs-on: node:16-alpine
+    runs-on: ubuntu-latest
     steps:
       - run: echo "Deploying..."
       - run: npm i -g surge
