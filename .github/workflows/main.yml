@@ -10,9 +10,6 @@ jobs:
   install:
     name: 'install'
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./sudoku
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
@@ -26,27 +23,18 @@ jobs:
   test:
     name: 'test'
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./sudoku
     steps:
       - run: yarn test
 
   build:
     name: 'build'
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./sudoku
     steps:
       - run: yarn build
 
   deploy:
     name: 'deploy'
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./sudoku
     steps:
       - name: Download artifact
         uses: actions/download-artifact@v2
