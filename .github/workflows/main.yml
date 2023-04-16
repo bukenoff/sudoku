@@ -39,8 +39,7 @@ jobs:
         with:
           name: dist
           path: ./dist
+      - name: Install surge
+        run: npm i -g surge
       - name: Deploy to surge
-        run: |
-          npm i -g surge
-          surge --project ./dist --domain sudokuapp.surge.sh
-          echo "DEPLOY DONE HURRAY"
+        run: surge --project ./dist --domain sudokuapp.surge.sh
