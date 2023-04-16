@@ -39,7 +39,10 @@ jobs:
         with:
           name: dist
           path: ./dist
-      - name: Install surge
-        run: npm i -g surge
-      - name: Deploy to surge
-        run: surge --project ./dist --domain sudokuapp.surge.sh
+      - name: Deploy to surge.sh
+        uses: dswistowski/surge-sh-action@v1
+        with:
+          domain: 'sudokuapp.surge.sh'
+          project: '.'
+          login: ${{ secrets.surge_login }}
+          token: ${{ secrets.surge_token }}
