@@ -40,7 +40,7 @@ jobs:
           name: dist
           path: ./dist
       - name: Copy index.html for surge.sh
-        run: cp index.html 200.html
+        run: cd dist && cp index.html 200.html
       - name: Deploy to surge.sh
         uses: dswistowski/surge-sh-action@v1
         with:
