@@ -23,7 +23,7 @@ describe('Cell component:', () => {
     expect(cell_component).toBeInTheDocument();
   });
 
-  it('should not render value', () => {
+  it('should not render any value', () => {
     const setGuessedValueMock = jest.fn() as CellProps['setGuessedValue'];
     const clearGuessedValueMock = jest.fn() as CellProps['clearGuessedValue'];
 
@@ -39,7 +39,7 @@ describe('Cell component:', () => {
       />,
     );
     const cell_value = getByTestId('cell_value');
-    expect(cell_value.textContent).toEqual(' ');
+    expect(cell_value.textContent).toEqual('');
   });
 
   it('should render digits selection', () => {
@@ -57,9 +57,9 @@ describe('Cell component:', () => {
         clearGuessedValue={clearGuessedValueMock}
       />,
     );
-    const cell_component = getByTestId('cell_root');
+    const cell_component_value = getByTestId('cell_value');
 
-    fireEvent.click(cell_component.children[0]);
+    fireEvent.click(cell_component_value.children[0]);
 
     const digits_selection_root = getByTestId('digits_selection_root');
 
@@ -83,6 +83,6 @@ describe('Cell component:', () => {
     );
 
     const cell_value = getByTestId('cell_value');
-    expect(cell_value).toHaveStyle('color: red');
+    expect(cell_value.children[0]).toHaveStyle('color: red');
   });
 });

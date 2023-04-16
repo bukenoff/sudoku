@@ -57,7 +57,7 @@ export const Cell: FC<CellProps> = ({
             value={is_resolved ? value : guessed_value || ' '}
             onKeyDown={onKeyDown}
             readOnly
-          ></input>
+          />
         </span>
         {display_digits_selection && (
           <DigitsSelection
