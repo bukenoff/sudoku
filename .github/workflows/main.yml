@@ -7,14 +7,10 @@ on:
     branches: [master]
 
 jobs:
-  install:
-    name: 'install'
+  build_and_test:
+    name: 'build_and_test'
     runs-on: ubuntu-latest
     steps:
-      - name: Check
-        run: |
-          pwd
-          ls
       - name: Checkout repo
         uses: actions/checkout@v2
       - name: Use Node.js 16.x
@@ -22,25 +18,15 @@ jobs:
         with:
           node-version: 16.x
       - name: Install NPM Dependencies
-        run: npm i
-
-  test:
-    name: 'test'
-    needs: install
-    runs-on: ubuntu-latest
-    steps:
-      - run: yarn test
-
-  build:
-    name: 'build'
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
-      - run: yarn build
+        run: npm install
+      - name: Run tests
+        run: npm run test
+      - name: Build app
+        run: npm run build
 
   deploy:
     name: 'deploy'
-    needs: build
+    needs: build_and_test
     runs-on: ubuntu-latest
     steps:
       - name: Download artifact
