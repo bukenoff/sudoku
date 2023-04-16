@@ -10,26 +10,51 @@ jobs:
   install:
     name: 'install'
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./sudoku
     steps:
-      - run: yarn
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Use Node.js 16.x
+        uses: actions/setup-node
+        with:
+          node-version: 16.x
+      - name: Install NPM Dependencies
+        run: npm i
 
   test:
     name: 'test'
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./sudoku
     steps:
       - run: yarn test
 
   build:
     name: 'build'
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./sudoku
     steps:
       - run: yarn build
 
   deploy:
     name: 'deploy'
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./sudoku
     steps:
-      - run: echo "Deploying..."
-      - run: npm i -g surge
-      - run: surge --project ./dist --domain sudokuapp.surge.sh
-      - run: echo "DEPLOY DONE HURRAY"
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: production-files
+          path: ./dist
+      - name: Deploy to surge
+        run: |
+          npm i -g surge
+          surge --project ./dist --domain sudokuapp.surge.sh
+          echo "DEPLOY DONE HURRAY"
