@@ -42,9 +42,8 @@ jobs:
       - name: Copy index.html for surge.sh
         run: cd dist && cp index.html 200.html
       - name: Deploy to surge.sh
-        uses: dswistowski/surge-sh-action@v1
+        uses: actions/setup-node@v3
         with:
-          domain: 'sudokuapp.surge.sh'
-          project: '.'
-          login: ${{ secrets.surge_login }}
-          token: ${{ secrets.surge_token }}
+          node-version: 16.x
+      - run: npm install -g surge
+      - run: surge ./ sudokuapp.surge.sh --token ${{ secrets.SURGE_TOKEN }}
