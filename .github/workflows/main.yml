@@ -33,17 +33,15 @@ jobs:
     name: 'deploy'
     needs: build_and_test
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: bukenoff.github.io.sudoku
     steps:
       - name: Download artifact
         uses: actions/download-artifact@v2
         with:
           name: dist
           path: ./dist
-      - name: Copy index.html for surge.sh
-        run: cd dist && cp index.html 200.html
-      - name: Deploy to surge.sh
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16.x
-      - run: npm install -g surge
-      - run: surge ./ sudokuapp.surge.sh --token ${{ secrets.SURGE_TOKEN }}
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
