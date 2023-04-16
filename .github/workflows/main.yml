@@ -23,6 +23,11 @@ jobs:
         run: npm run test
       - name: Build app
         run: npm run build
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: ./dist
 
   deploy:
     name: 'deploy'
