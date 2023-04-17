@@ -45,7 +45,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: bukenoff.github.io.sudoku
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Setup Pages
         uses: actions/configure-pages@v3
@@ -54,8 +54,6 @@ jobs:
         with:
           name: dist
           path: ./dist
-      - name: ls
-        run: ls dist
       - name: Deploy 🚀
         id: deployment
         uses: actions/deploy-pages@v1
