@@ -54,6 +54,8 @@ jobs:
         with:
           name: dist
           path: ./dist
+      - name: ls
+        run: ls dist
       - name: Deploy 🚀
         id: deployment
         uses: actions/deploy-pages@v1
