@@ -13,4 +13,7 @@ export default defineConfig({
     },
   },
   plugins: [react(), splitVendorChunkPlugin()],
+  build: {
+    minify: 'esbuild',
+  },
 });
