@@ -1,3 +1,5 @@
+import { it, describe, expect } from 'vitest';
+
 import { RESOLVED_CELLS_COUNT, TOTAL_CELLS_COUNT } from '~/constants';
 
 import { GridStore } from '../grid.store';

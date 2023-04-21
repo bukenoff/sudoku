@@ -1,12 +1,21 @@
+/**
+ * @vitest-environment jsdom
+ */
 import React from 'react';
-import { render, fireEvent } from '~/test.utils';
+import { it, describe, expect, vi, afterEach } from 'vitest';
+
+import { render, fireEvent, cleanup } from '~/test.utils';
 
 import { Cell, CellProps } from './Cell';
 
+afterEach(() => {
+  cleanup();
+});
+
 describe('Cell component:', () => {
   it('should render without crash', () => {
-    const setGuessedValueMock = jest.fn() as CellProps['setGuessedValue'];
-    const clearGuessedValueMock = jest.fn() as CellProps['clearGuessedValue'];
+    const setGuessedValueMock = vi.fn() as CellProps['setGuessedValue'];
+    const clearGuessedValueMock = vi.fn() as CellProps['clearGuessedValue'];
 
     const { getByTestId } = render(
       <Cell
@@ -24,8 +33,8 @@ describe('Cell component:', () => {
   });
 
   it('should not render any value', () => {
-    const setGuessedValueMock = jest.fn() as CellProps['setGuessedValue'];
-    const clearGuessedValueMock = jest.fn() as CellProps['clearGuessedValue'];
+    const setGuessedValueMock = vi.fn() as CellProps['setGuessedValue'];
+    const clearGuessedValueMock = vi.fn() as CellProps['clearGuessedValue'];
 
     const { getByTestId } = render(
       <Cell
@@ -43,8 +52,8 @@ describe('Cell component:', () => {
   });
 
   it('should render digits selection', () => {
-    const setGuessedValueMock = jest.fn() as CellProps['setGuessedValue'];
-    const clearGuessedValueMock = jest.fn() as CellProps['clearGuessedValue'];
+    const setGuessedValueMock = vi.fn() as CellProps['setGuessedValue'];
+    const clearGuessedValueMock = vi.fn() as CellProps['clearGuessedValue'];
 
     const { getByTestId } = render(
       <Cell
@@ -67,8 +76,8 @@ describe('Cell component:', () => {
   });
 
   it('should highlight value red when it is not equal to guessed value', () => {
-    const setGuessedValueMock = jest.fn() as CellProps['setGuessedValue'];
-    const clearGuessedValueMock = jest.fn() as CellProps['clearGuessedValue'];
+    const setGuessedValueMock = vi.fn() as CellProps['setGuessedValue'];
+    const clearGuessedValueMock = vi.fn() as CellProps['clearGuessedValue'];
 
     const { getByTestId } = render(
       <Cell

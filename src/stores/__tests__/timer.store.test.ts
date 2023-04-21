@@ -1,3 +1,5 @@
+import { it, describe, expect } from 'vitest';
+
 import { TimerStore } from '../timer.store';
 
 describe('Timer store:', () => {
@@ -16,6 +18,7 @@ describe('Timer store:', () => {
     timer_store.incrementTime();
     timer_store.incrementTime();
 
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     await setTimeout(() => {}, 2000);
 
     timer_store.reset();

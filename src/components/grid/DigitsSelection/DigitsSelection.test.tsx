@@ -1,12 +1,17 @@
+/**
+ * @vitest-environment jsdom
+ */
 import React from 'react';
+import { it, describe, expect, vi } from 'vitest';
+
 import { render, fireEvent } from '~/test.utils';
 
 import { DigitsSelection, DigitsSelectionProps } from './DigitsSelection';
 
 describe('DigitsSelection component:', () => {
   it('should render without crash', () => {
-    const setGuessedValueMock = jest.fn() as DigitsSelectionProps['setGuessedValue'];
-    const clearGuessedValueMock = jest.fn() as DigitsSelectionProps['clearGuessedValue'];
+    const setGuessedValueMock = vi.fn() as DigitsSelectionProps['setGuessedValue'];
+    const clearGuessedValueMock = vi.fn() as DigitsSelectionProps['clearGuessedValue'];
 
     const { getByTestId } = render(
       <DigitsSelection
@@ -21,8 +26,8 @@ describe('DigitsSelection component:', () => {
   });
 
   it('should render digits selection', () => {
-    const setGuessedValueMock = jest.fn() as DigitsSelectionProps['setGuessedValue'];
-    const clearGuessedValueMock = jest.fn() as DigitsSelectionProps['clearGuessedValue'];
+    const setGuessedValueMock = vi.fn() as DigitsSelectionProps['setGuessedValue'];
+    const clearGuessedValueMock = vi.fn() as DigitsSelectionProps['clearGuessedValue'];
 
     const { getByTestId } = render(
       <DigitsSelection
@@ -41,8 +46,8 @@ describe('DigitsSelection component:', () => {
   });
 
   it('should call clearGuessedValue function', () => {
-    const setGuessedValueMock = jest.fn() as DigitsSelectionProps['setGuessedValue'];
-    const clearGuessedValueMock = jest.fn() as DigitsSelectionProps['clearGuessedValue'];
+    const setGuessedValueMock = vi.fn() as DigitsSelectionProps['setGuessedValue'];
+    const clearGuessedValueMock = vi.fn() as DigitsSelectionProps['clearGuessedValue'];
 
     const { getByTestId } = render(
       <DigitsSelection
