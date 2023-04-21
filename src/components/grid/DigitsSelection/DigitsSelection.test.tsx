@@ -1,6 +1,3 @@
-/**
- * @vitest-environment jsdom
- */
 import React from 'react';
 import { it, describe, expect, vi } from 'vitest';
 
