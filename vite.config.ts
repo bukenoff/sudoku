@@ -7,7 +7,10 @@ import { dependencies } from './package.json';
 function renderChunks(deps: Record<string, string>) {
   let chunks = {};
   Object.keys(deps).forEach((key) => {
-    if (['react', 'react-router-dom', 'react-dom'].includes(key)) return;
+    if (
+      ['react', 'react-router-dom', 'react-router', 'react-dom'].includes(key)
+    )
+      return;
     chunks[key] = [key];
   });
   return chunks;
