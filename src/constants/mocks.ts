@@ -35,7 +35,7 @@ export const SUDOKU_GRID_MOCK = (
           }
 
           block[current_digit_index + 1] = {
-            id: uuidv4(),
+            id: Math.random().toString(),
             value: current_digit,
             is_resolved,
             is_value_guessed: false,
