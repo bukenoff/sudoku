@@ -1,4 +1,4 @@
-import React, { FC, MouseEventHandler, useCallback } from 'react';
+import React, { FC, MouseEventHandler } from 'react';
 
 import { DIGITS } from '~/constants';
 import { GridStore } from '~/stores';
@@ -19,22 +19,19 @@ export const DigitsSelection: FC<DigitsSelectionProps> = ({
   setGuessedValue,
   clearGuessedValue,
 }) => {
-  const onDigitClick: MouseEventHandler<HTMLSpanElement> = useCallback(
-    (event) => {
-      if (!event.currentTarget.dataset.digit) return;
+  const onDigitClick: MouseEventHandler<HTMLSpanElement> = (event) => {
+    if (!event.currentTarget.dataset.digit) return;
 
-      setGuessedValue(
-        block_index,
-        cell_index,
-        +event.currentTarget.dataset.digit as ICell['guessed_value'],
-      );
-    },
-    [setGuessedValue, block_index, cell_index],
-  );
+    setGuessedValue(
+      block_index,
+      cell_index,
+      +event.currentTarget.dataset.digit as ICell['guessed_value'],
+    );
+  };
 
-  const onClearClick = useCallback(() => {
+  const onClearClick = () => {
     clearGuessedValue(block_index, cell_index);
-  }, [block_index, cell_index]);
+  };
 
   return (
     <Styled.Root data-testid="digits_selection_root">

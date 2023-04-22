@@ -2,6 +2,4 @@ import React, { FC } from 'react';
 
 import * as Styled from './styles';
 
-export const Footer: FC = () => {
-  return <Styled.Root>&copy;2021</Styled.Root>;
-};
+export const Footer: FC = () => <Styled.Root>&copy;2021</Styled.Root>;

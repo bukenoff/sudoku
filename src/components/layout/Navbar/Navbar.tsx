@@ -17,18 +17,17 @@ export const Navbar: FC = observer(() => {
 
   const is_game_page = pathname.includes('/game');
 
-  const onPlayPauseClick = useCallback(() => {
+  const onPlayPauseClick = () => {
     if (is_paused) {
       unpause();
-      return;
+    } else {
+      pause();
     }
+  };
 
-    pause();
-  }, [is_paused, pause, unpause]);
-
-  const startNewGame = useCallback(() => {
+  const startNewGame = () => {
     !!difficulty && fetchGrid(difficulty);
-  }, [difficulty]);
+  };
 
   useEffect(() => {
     if (is_game_page) return;

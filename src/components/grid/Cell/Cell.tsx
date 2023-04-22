@@ -1,4 +1,4 @@
-import React, { FC, KeyboardEventHandler, useCallback, useState } from 'react';
+import React, { FC, KeyboardEventHandler, useState } from 'react';
 import ClickAwayListener from 'react-click-away-listener';
 
 import { GridStore } from '~/stores';
@@ -32,15 +32,12 @@ export const Cell: FC<CellProps> = ({
   const onCellClick = () => setSelected(!is_selected);
   const onClickAway = () => setSelected(false);
 
-  const onKeyDown: KeyboardEventHandler<HTMLInputElement> = useCallback(
-    (e) => {
-      if (/[1-9]/g.test(e.key)) {
-        setGuessedValue(block_index, cell_index, +e.key as any); // TODO: Fix any
-        setSelected(false);
-      }
-    },
-    [setGuessedValue, block_index, cell_index],
-  );
+  const onKeyDown: KeyboardEventHandler<HTMLInputElement> = (e) => {
+    if (/[1-9]/g.test(e.key)) {
+      setGuessedValue(block_index, cell_index, +e.key as any); // TODO: Fix any
+      setSelected(false);
+    }
+  };
 
   return (
     <ClickAwayListener onClickAway={onClickAway} data-testid="cell_root">
