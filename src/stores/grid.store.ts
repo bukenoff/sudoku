@@ -48,6 +48,7 @@ export class GridStore {
     this.is_fetching = false;
     this.timer_store.reset();
     this.timer_store.unpause();
+    this.mistakes_count = 0;
   };
 
   setGuessedValue = (
@@ -79,9 +80,7 @@ export class GridStore {
   };
 
   clearGrid = (): void => {
-    const block_indexes = (Object.keys(
-      this.grid,
-    ) as unknown) as CellIndexType[];
+    const block_indexes = Object.keys(this.grid) as unknown as CellIndexType[];
 
     block_indexes.forEach((block_index) => {
       Object.values(this.grid[block_index]).forEach((cell) => {
