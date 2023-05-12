@@ -12,8 +12,6 @@ export interface BlockProps {
 }
 
 export const Block: FC<BlockProps> = observer(({ block }) => {
-  const { grid_store } = useStores();
-
   return (
     <Styled.Root>
       {Object.values(block).map((cell) => (
@@ -24,8 +22,6 @@ export const Block: FC<BlockProps> = observer(({ block }) => {
           guessed_value={cell.guessed_value}
           block_index={cell.block_index}
           cell_index={cell.cell_index}
-          setGuessedValue={grid_store.setGuessedValue}
-          clearGuessedValue={grid_store.clearGuessedValue}
         />
       ))}
     </Styled.Root>

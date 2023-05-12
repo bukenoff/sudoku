@@ -1,7 +1,7 @@
 import React, { FC, KeyboardEventHandler, useState } from 'react';
 import ClickAwayListener from 'react-click-away-listener';
 
-import { GridStore } from '~/stores';
+import { useStores } from '~/stores';
 import type { ICell } from '~/types';
 
 import DigitsSelection from '../DigitsSelection';
@@ -13,8 +13,6 @@ export interface CellProps {
   guessed_value: ICell['guessed_value'];
   block_index: ICell['block_index'];
   cell_index: ICell['cell_index'];
-  clearGuessedValue: typeof GridStore.prototype.clearGuessedValue;
-  setGuessedValue: typeof GridStore.prototype.setGuessedValue;
 }
 
 export const Cell: FC<CellProps> = ({
@@ -23,15 +21,16 @@ export const Cell: FC<CellProps> = ({
   block_index,
   cell_index,
   is_resolved,
-  setGuessedValue,
-  clearGuessedValue,
 }) => {
+  const {
+    grid_store: { setGuessedValue, clearGuessedValue },
+  } = useStores();
   const [is_selected, setSelected] = useState(false);
   const display_digits_selection = is_resolved === false && is_selected;
 
   const onCellClick = () => setSelected(!is_selected);
   const onClickAway = () => setSelected(false);
-
+  console.log('render');
   const onKeyDown: KeyboardEventHandler<HTMLInputElement> = (e) => {
     if (/[1-9]/g.test(e.key)) {
       setGuessedValue(block_index, cell_index, +e.key as any); // TODO: Fix any
