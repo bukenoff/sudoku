@@ -1,4 +1,4 @@
-import { action, observable, makeObservable } from 'mobx';
+import { action, observable, makeObservable, runInAction } from 'mobx';
 
 import {
   RESOLVED_CELLS_COUNT,
@@ -45,10 +45,10 @@ export class GridStore {
     this.is_fetching = true;
     this.unresolved_count -= RESOLVED_CELLS_COUNT[difficulty];
     this.grid = await fetchSudokiGrid(difficulty);
-    this.is_fetching = false;
+    runInAction(() => (this.is_fetching = false));
     this.timer_store.reset();
     this.timer_store.unpause();
-    this.mistakes_count = 0;
+    runInAction(() => (this.mistakes_count = 0));
   };
 
   setGuessedValue = (
