@@ -2,7 +2,6 @@ import React, { FC } from 'react';
 import { observer } from 'mobx-react-lite';
 
 import type { IBlock } from '~/types';
-import { useStores } from '~/stores';
 
 import Cell from '../Cell';
 import * as Styled from './styles';
