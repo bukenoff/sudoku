@@ -27,7 +27,11 @@ export const Cell: FC<CellProps> = memo(
     const onClickAway = () => setSelected(false);
     const onKeyDown: KeyboardEventHandler<HTMLInputElement> = (e) => {
       if (/[1-9]/g.test(e.key)) {
-        setGuessedValue(block_index, cell_index, +e.key as any); // TODO: Fix any
+        setGuessedValue(
+          block_index,
+          cell_index,
+          +e.key as ICell['guessed_value'],
+        );
         setSelected(false);
       }
     };
