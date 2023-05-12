@@ -1,6 +1,6 @@
 ## Description
 
-Sudoku built with react and mobx, here's a link to working version https://elegant-shannon-a9b0e1.netlify.app/
+Sudoku built with react and mobx
 
 ## Prerequisites
 
