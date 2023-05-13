@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 import type { IGrid } from '~/types';
 
 import Block from '../Block';
-import * as Styled from './styles';
+import * as Styled from './Grid.styles';
 
 interface GridProps {
   grid: IGrid;

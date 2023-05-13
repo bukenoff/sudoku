@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import * as Styled from './styles';
+import * as Styled from './PauseOverlay.styles';
 
 export const PauseOverlay: FC = () => (
   <Styled.Root>

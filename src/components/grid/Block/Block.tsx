@@ -4,7 +4,7 @@ import { observer } from 'mobx-react-lite';
 import type { IBlock } from '~/types';
 
 import Cell from '../Cell';
-import * as Styled from './styles';
+import * as Styled from './Block.styles';
 
 export interface BlockProps {
   block: IBlock;

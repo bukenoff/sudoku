@@ -7,7 +7,7 @@ import { useStores } from '~/stores/stores.provider';
 import PauseOverlay from '~/components/overlays/PauseOverlay';
 import type { Difficulty } from '~/types';
 
-import * as Styled from './styles';
+import * as Styled from './GamePage.styles';
 import { SCORES } from '~/constants';
 
 type GamePageProps = RouteComponentProps<{ difficulty: Difficulty }>;

@@ -4,7 +4,7 @@ import { DIGITS } from '~/constants';
 import { GridStore } from '~/stores';
 import type { ICell } from '~/types';
 
-import * as Styled from './styles';
+import * as Styled from './DigitsSelection.styles';
 
 export interface DigitsSelectionProps {
   block_index: ICell['block_index'];

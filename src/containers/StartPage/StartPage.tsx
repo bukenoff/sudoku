@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 
-import * as Styled from './styles';
+import * as Styled from './StartPage.styles';
 
 export const StartPage: FC = () => (
   <Styled.Root>

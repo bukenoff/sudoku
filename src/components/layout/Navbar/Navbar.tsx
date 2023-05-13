@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useEffect } from 'react';
+import React, { FC, useEffect } from 'react';
 import { Link, useLocation, NavLink } from 'react-router-dom';
 import { BiPause, BiRevision, BiX, BiPlay } from 'react-icons/bi';
 import { observer } from 'mobx-react-lite';
@@ -6,7 +6,7 @@ import { observer } from 'mobx-react-lite';
 import { useStores } from '~/stores/stores.provider';
 import { HOME, SCORES } from '~/constants';
 
-import * as Styled from './styles';
+import * as Styled from './Navbar.styles';
 
 export const Navbar: FC = observer(() => {
   const { pathname } = useLocation();

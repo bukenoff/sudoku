@@ -5,7 +5,7 @@ import { useStores } from '~/stores';
 import type { ICell } from '~/types';
 
 import DigitsSelection from '../DigitsSelection';
-import * as Styled from './styles';
+import * as Styled from './Cell.styles';
 
 export interface CellProps {
   is_resolved: boolean;
