@@ -21,6 +21,7 @@ export const Block: FC<BlockProps> = observer(({ block }) => {
           guessed_value={cell.guessed_value}
           block_index={cell.block_index}
           cell_index={cell.cell_index}
+          is_highlighted={cell.is_highlighted}
         />
       ))}
     </Styled.Root>

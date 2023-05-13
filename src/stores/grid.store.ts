@@ -71,6 +71,14 @@ export class GridStore {
     this.checkIfResolved();
   };
 
+  highlightCells = (
+    block_index: CellIndexType,
+    cell_index: CellIndexType,
+    value: boolean,
+  ): void => {
+    // TODO: Set highlight to {value} for each cell in block, column, row
+  };
+
   clearGuessedValue = (
     block_index: CellIndexType,
     cell_index: CellIndexType,

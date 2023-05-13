@@ -5,6 +5,7 @@ export interface ICell {
   value: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
   is_resolved: boolean;
   is_value_guessed: boolean;
+  is_highlighted: boolean;
   guessed_value: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
   block_index: CellIndexType;
   cell_index: CellIndexType;

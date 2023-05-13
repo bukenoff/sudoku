@@ -20,6 +20,7 @@ describe('Cell component:', () => {
           guessed_value={5}
           block_index={1}
           cell_index={2}
+          is_highlighted={false}
         />
         ,
       </StoresProvider>,
@@ -37,6 +38,7 @@ describe('Cell component:', () => {
           guessed_value={0}
           block_index={1}
           cell_index={2}
+          is_highlighted={false}
         />
         ,
       </StoresProvider>,
@@ -54,6 +56,7 @@ describe('Cell component:', () => {
           guessed_value={0}
           block_index={1}
           cell_index={2}
+          is_highlighted={false}
         />
         ,
       </StoresProvider>,
@@ -76,6 +79,7 @@ describe('Cell component:', () => {
           guessed_value={0}
           block_index={1}
           cell_index={2}
+          is_highlighted={false}
         />
         ,
       </StoresProvider>,

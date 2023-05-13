@@ -1,17 +1,21 @@
 import styled from 'styled-components';
 
-const getColorBasedOnValue = (
+const getColor = (
   is_resolved: boolean,
   value: number | ' ',
   guessed_value: number,
-): 'black' | 'red' => {
+): string => {
   if (is_resolved) return 'black';
-
-  if (value !== guessed_value) {
-    return 'red';
-  }
+  if (value !== guessed_value) return 'red';
 
   return 'black';
+};
+
+const getBgColor = (is_resolved: boolean, is_highlighted: boolean): string => {
+  if (is_resolved) return '#efefef';
+  if (is_highlighted) return 'var(--steel-blue)';
+
+  return 'white';
 };
 
 interface RootProps {
@@ -19,6 +23,7 @@ interface RootProps {
   value: number | ' ';
   guessed_value: number;
   is_selected: boolean;
+  is_highlighted: boolean;
 }
 
 export const Root = styled.li<RootProps>`
@@ -33,7 +38,8 @@ export const Root = styled.li<RootProps>`
   cursor: pointer;
   position: relative;
   user-select: none;
-  background-color: ${({ is_resolved }) => (is_resolved ? '#efefef' : 'white')};
+  background-color: ${({ is_resolved, is_highlighted }) =>
+    getBgColor(is_resolved, is_highlighted)};
 
   & span[data-testid='cell_value'] input {
     outline: none;
@@ -48,6 +54,6 @@ export const Root = styled.li<RootProps>`
     text-align: center;
 
     color: ${({ is_resolved, value, guessed_value }) =>
-      getColorBasedOnValue(is_resolved, value, guessed_value)};
+      getColor(is_resolved, value, guessed_value)};
   }
 `;
