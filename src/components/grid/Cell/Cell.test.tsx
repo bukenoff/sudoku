@@ -1,9 +1,10 @@
 import React from 'react';
-import { it, describe, expect, vi, afterEach } from 'vitest';
+import { it, describe, expect, afterEach } from 'vitest';
 
 import { render, fireEvent, cleanup } from '~/test.utils';
+import { StoresProvider } from '~/stores';
 
-import { Cell, CellProps } from './Cell';
+import { Cell } from './Cell';
 
 afterEach(() => {
   cleanup();
@@ -11,57 +12,51 @@ afterEach(() => {
 
 describe('Cell component:', () => {
   it('should render without crash', () => {
-    const setGuessedValueMock = vi.fn() as CellProps['setGuessedValue'];
-    const clearGuessedValueMock = vi.fn() as CellProps['clearGuessedValue'];
-
     const { getByTestId } = render(
-      <Cell
-        is_resolved={true}
-        value={5}
-        guessed_value={5}
-        block_index={1}
-        cell_index={2}
-        setGuessedValue={setGuessedValueMock}
-        clearGuessedValue={clearGuessedValueMock}
-      />,
+      <StoresProvider>
+        <Cell
+          is_resolved={true}
+          value={5}
+          guessed_value={5}
+          block_index={1}
+          cell_index={2}
+        />
+        ,
+      </StoresProvider>,
     );
     const cell_component = getByTestId('cell_root');
     expect(cell_component).toBeInTheDocument();
   });
 
   it('should not render any value', () => {
-    const setGuessedValueMock = vi.fn() as CellProps['setGuessedValue'];
-    const clearGuessedValueMock = vi.fn() as CellProps['clearGuessedValue'];
-
     const { getByTestId } = render(
-      <Cell
-        is_resolved={false}
-        value={5}
-        guessed_value={0}
-        block_index={1}
-        cell_index={2}
-        setGuessedValue={setGuessedValueMock}
-        clearGuessedValue={clearGuessedValueMock}
-      />,
+      <StoresProvider>
+        <Cell
+          is_resolved={false}
+          value={5}
+          guessed_value={0}
+          block_index={1}
+          cell_index={2}
+        />
+        ,
+      </StoresProvider>,
     );
     const cell_value = getByTestId('cell_value');
     expect(cell_value.textContent).toEqual('');
   });
 
   it('should render digits selection', () => {
-    const setGuessedValueMock = vi.fn() as CellProps['setGuessedValue'];
-    const clearGuessedValueMock = vi.fn() as CellProps['clearGuessedValue'];
-
     const { getByTestId } = render(
-      <Cell
-        is_resolved={false}
-        value={5}
-        guessed_value={0}
-        block_index={1}
-        cell_index={2}
-        setGuessedValue={setGuessedValueMock}
-        clearGuessedValue={clearGuessedValueMock}
-      />,
+      <StoresProvider>
+        <Cell
+          is_resolved={false}
+          value={5}
+          guessed_value={0}
+          block_index={1}
+          cell_index={2}
+        />
+        ,
+      </StoresProvider>,
     );
     const cell_component_value = getByTestId('cell_value');
 
@@ -73,19 +68,17 @@ describe('Cell component:', () => {
   });
 
   it('should highlight value red when it is not equal to guessed value', () => {
-    const setGuessedValueMock = vi.fn() as CellProps['setGuessedValue'];
-    const clearGuessedValueMock = vi.fn() as CellProps['clearGuessedValue'];
-
     const { getByTestId } = render(
-      <Cell
-        is_resolved={false}
-        value={5}
-        guessed_value={0}
-        block_index={1}
-        cell_index={2}
-        setGuessedValue={setGuessedValueMock}
-        clearGuessedValue={clearGuessedValueMock}
-      />,
+      <StoresProvider>
+        <Cell
+          is_resolved={false}
+          value={5}
+          guessed_value={0}
+          block_index={1}
+          cell_index={2}
+        />
+        ,
+      </StoresProvider>,
     );
 
     const cell_value = getByTestId('cell_value');
