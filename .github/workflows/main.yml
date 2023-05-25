@@ -28,11 +28,11 @@ jobs:
         with:
           node-version: 16.x
       - name: Install NPM Dependencies
-        run: yarn install
+        run: pnpm run install
       - name: Run tests
-        run: yarn test
+        run: pnpm run test
       - name: Build app
-        run: yarn build
+        run: pnpm run build
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
