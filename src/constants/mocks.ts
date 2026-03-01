@@ -1,6 +1,7 @@
 import type { IGrid } from '~/types';
 
 import { RESOLVED_CELLS_COUNT } from './sudoku';
+import SudokuSolver from '~/sudoku-solver';
 
 export const SUDOKU_MATRIX_MOCK = [
   [4, 3, 5, 6, 8, 2, 1, 9, 7],
@@ -14,13 +15,28 @@ export const SUDOKU_MATRIX_MOCK = [
   [8, 7, 4, 1, 3, 6, 2, 5, 9],
 ];
 
+const b = [
+  [null, null, null, null, null, null, null, null, null],
+  [null, null, null, null, null, null, null, null, null],
+  [null, null, null, null, null, null, null, null, null],
+  [null, null, null, null, null, null, null, null, null],
+  [null, null, null, null, null, null, null, null, null],
+  [null, null, null, null, null, null, null, null, null],
+  [null, null, null, null, null, null, null, null, null],
+  [null, null, null, null, null, null, null, null, null],
+  [null, null, null, null, null, null, null, null, null],
+] as (null | number)[][];
+
 export const SUDOKU_GRID_MOCK = (
   difficulty: 'easy' | 'medium' | 'hard',
 ): IGrid => {
   let resolved_cells_left = RESOLVED_CELLS_COUNT[difficulty];
+  const solver = new SudokuSolver(b);
+  solver.solve();
 
-  return SUDOKU_MATRIX_MOCK.reduce(
-    (grid: any, current_block, current_block_index) => {
+  return solver
+    .toBlocks()
+    .reduce((grid: any, current_block, current_block_index) => {
       grid[current_block_index + 1] = current_block.reduce(
         (block: any, current_digit, current_digit_index) => {
           let is_resolved = false;
@@ -48,9 +64,7 @@ export const SUDOKU_GRID_MOCK = (
       );
 
       return grid;
-    },
-    {},
-  );
+    }, {});
 };
 export const fetchSudokiGrid = (
   difficulty: 'easy' | 'medium' | 'hard',
