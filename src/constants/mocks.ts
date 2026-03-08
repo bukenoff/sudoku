@@ -22,7 +22,6 @@ export const SUDOKU_GRID_MOCK = (
   const solver = new SudokuSolver(b);
   solver.solve();
 
-  console.log('solve', solver.toBlocks());
   return solver
     .toBlocks()
     .reduce((grid: any, current_block, current_block_index) => {

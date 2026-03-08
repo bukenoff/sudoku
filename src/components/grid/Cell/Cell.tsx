@@ -53,8 +53,9 @@ export const Cell: FC<CellProps> = memo(
     };
 
     return (
-      <ClickAwayListener onClickAway={onClickAway} data-testid="cell_root">
+      <ClickAwayListener onClickAway={onClickAway}>
         <Styled.Root
+          data-testid="cell_root"
           is_resolved={is_resolved}
           value={value}
           guessed_value={guessed_value}

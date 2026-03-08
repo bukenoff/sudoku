@@ -1,5 +1,6 @@
 /* eslint-disable import/export */
 import { render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 function customRender(ui: React.ReactElement, options = {}) {
   return render(ui, {
@@ -11,6 +12,6 @@ function customRender(ui: React.ReactElement, options = {}) {
 }
 
 export * from '@testing-library/react';
-export { default as userEvent } from '@testing-library/user-event';
+export { userEvent };
 // override render export
 export { customRender as render };

@@ -1,5 +1,5 @@
 import React, { FC, Suspense, lazy } from 'react';
-import { Route, BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import { StoresProvider } from './stores/stores.provider';
 import Navbar from './components/layout/Navbar';
@@ -18,9 +18,11 @@ const App: FC = () => (
       <BrowserRouter>
         <main>
           <Navbar />
-          <Route exact path={HOME} component={StartPage} />
-          <Route path={GAME} component={GamePage} />
-          <Route path={SCORES} component={ScoresPage} />
+          <Routes>
+            <Route path={HOME} element={<StartPage />} />
+            <Route path={GAME} element={<GamePage />} />
+            <Route path={SCORES} element={<ScoresPage />} />
+          </Routes>
           <Footer />
         </main>
       </BrowserRouter>

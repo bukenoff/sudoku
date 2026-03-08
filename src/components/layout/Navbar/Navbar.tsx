@@ -41,7 +41,10 @@ export const Navbar: FC = observer(() => {
       </Styled.HomeLink>
       <Styled.RightPartWrapper>
         <Styled.ScoresLink>
-          <NavLink to={SCORES} activeClassName="active">
+          <NavLink
+            to={SCORES}
+            className={({ isActive }) => (isActive ? 'active' : '')}
+          >
             Best Scores
           </NavLink>
         </Styled.ScoresLink>

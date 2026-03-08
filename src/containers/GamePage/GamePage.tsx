@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
-import { RouteComponentProps, useHistory } from 'react-router';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import Grid from '~/components/grid/Grid';
 import { useStores } from '~/stores/stores.provider';
@@ -10,22 +10,22 @@ import type { Difficulty } from '~/types';
 import * as Styled from './GamePage.styles';
 import { SCORES } from '~/constants';
 
-type GamePageProps = RouteComponentProps<{ difficulty: Difficulty }>;
-
-export const GamePage: FC<GamePageProps> = observer(({ match }) => {
+export const GamePage: FC = observer(() => {
+  const { difficulty } = useParams<{ difficulty: Difficulty }>();
+  const navigate = useNavigate();
   const {
     grid_store: { fetchGrid, grid, is_fetching, is_resolved },
     timer_store: { is_paused },
   } = useStores();
 
-  const history = useHistory();
-
   useEffect(() => {
-    fetchGrid(match.params.difficulty);
+    if (difficulty) {
+      fetchGrid(difficulty);
+    }
   }, []);
 
   useEffect(() => {
-    is_resolved && history.push(SCORES);
+    is_resolved && navigate(SCORES);
   }, [is_resolved]);
 
   return (
