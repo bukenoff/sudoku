@@ -99,10 +99,9 @@ export default class SudokuSolver {
   solve(): void {
     for (let i = 0; i < this.row_length; i++) {
       for (let j = 0; j < this.row_length; j++) {
-        if (this.board[i][j] === null) {
-          return;
+        if (this.board[i][j] !== null) {
+          this.placeNumber(this.board[i][j] as number, i, j);
         }
-        this.placeNumber(this.board[i][j] as number, i, j);
       }
     }
 

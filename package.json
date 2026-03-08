@@ -4,7 +4,7 @@
   "description": "Sudoku game built with react and mobx",
   "main": "src/index.tsx",
   "scripts": {
-    "start": "vite",
+    "dev": "vite",
     "typecheck": "tsc --noEmit --watch",
     "build": "tsc && vite build",
     "preview": "vite preview",

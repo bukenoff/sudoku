@@ -3,18 +3,6 @@ import type { IGrid } from '~/types';
 import { RESOLVED_CELLS_COUNT } from './sudoku';
 import SudokuSolver from '~/sudoku-solver';
 
-export const SUDOKU_MATRIX_MOCK = [
-  [4, 3, 5, 6, 8, 2, 1, 9, 7],
-  [2, 6, 9, 5, 7, 1, 8, 3, 4],
-  [7, 8, 1, 4, 9, 3, 5, 6, 2],
-  [8, 2, 6, 3, 7, 4, 9, 5, 1],
-  [1, 9, 5, 6, 8, 2, 7, 4, 3],
-  [3, 4, 7, 9, 1, 5, 6, 2, 8],
-  [5, 1, 9, 2, 4, 8, 7, 6, 3],
-  [3, 2, 6, 9, 5, 7, 4, 1, 8],
-  [8, 7, 4, 1, 3, 6, 2, 5, 9],
-];
-
 const b = [
   [null, null, null, null, null, null, null, null, null],
   [null, null, null, null, null, null, null, null, null],
@@ -34,6 +22,7 @@ export const SUDOKU_GRID_MOCK = (
   const solver = new SudokuSolver(b);
   solver.solve();
 
+  console.log('solve', solver.toBlocks());
   return solver
     .toBlocks()
     .reduce((grid: any, current_block, current_block_index) => {
