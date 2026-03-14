@@ -34,5 +34,3 @@ export interface IGrid {
   8: IBlock;
   9: IBlock;
 }
-
-export type Difficulty = 'easy' | 'medium' | 'hard';

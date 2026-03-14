@@ -1,7 +1,7 @@
 {
   "name": "sudoku",
   "version": "1.0.0",
-  "description": "Sudoku game built with react and mobx",
+  "description": "Sudoku game",
   "main": "src/index.tsx",
   "scripts": {
     "dev": "vite",

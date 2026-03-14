@@ -1,5 +1,5 @@
 import React, { FC, useEffect } from 'react';
-import { BiPause, BiRevision, BiX, BiPlay } from 'react-icons/bi';
+import { BiPause, BiRevision, BiPlay } from 'react-icons/bi';
 
 import * as Styled from './Navbar.styles';
 import { useGrid, useTimer } from '~/stores';
@@ -19,7 +19,7 @@ export const Navbar: FC = () => {
   };
 
   const startNewGame = () => {
-    !!grid_store.difficulty && grid_store.fetchGrid('easy');
+    grid_store.fetchGrid();
   };
 
   useEffect(() => {
@@ -49,14 +49,6 @@ export const Navbar: FC = () => {
                     <BiPause /> Pause
                   </>
                 )}
-              </Styled.GameActionButton>
-              <Styled.GameActionButton
-                type="button"
-                className="clear"
-                onClick={grid_store.clearGrid}
-              >
-                <BiX />
-                Clear Grid
               </Styled.GameActionButton>
               <Styled.GameActionButton
                 type="button"

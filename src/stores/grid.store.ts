@@ -1,12 +1,8 @@
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 
-import {
-  RESOLVED_CELLS_COUNT,
-  TOTAL_CELLS_COUNT,
-  fetchSudokiGrid,
-} from '~/constants';
-import type { CellIndexType, ICell, Difficulty, IGrid } from '~/types';
+import { TOTAL_CELLS_COUNT, fetchSudokiGrid } from '~/constants';
+import type { CellIndexType, ICell, IGrid } from '~/types';
 
 import { useTimer } from './timer.store';
 
@@ -16,9 +12,8 @@ interface GridStore {
   mistakes_count: number;
   unresolved_count: number;
   is_resolved: boolean;
-  difficulty: Difficulty | null;
   checkIfResolved: VoidFunction;
-  fetchGrid: (difficulty: Difficulty) => void;
+  fetchGrid: VoidFunction;
   setGuessedValue: (
     block_index: CellIndexType,
     cell_index: CellIndexType,
@@ -28,7 +23,6 @@ interface GridStore {
     block_index: CellIndexType,
     cell_index: CellIndexType,
   ) => void;
-  clearGrid: VoidFunction;
 }
 
 export const useGrid = create<GridStore>()(
@@ -39,7 +33,6 @@ export const useGrid = create<GridStore>()(
       mistakes_count: 0,
       unresolved_count: TOTAL_CELLS_COUNT,
       is_resolved: false,
-      difficulty: null,
       checkIfResolved: () => {
         set((state) => {
           if (state.unresolved_count > 0) return {};
@@ -51,13 +44,11 @@ export const useGrid = create<GridStore>()(
           useTimer.getState().stop();
         }
       },
-      fetchGrid: (difficulty: Difficulty) => {
+      fetchGrid: () => {
         set((state) => {
           return {
-            difficulty: difficulty,
-            unresolved_count:
-              state.unresolved_count - RESOLVED_CELLS_COUNT[difficulty],
-            grid: fetchSudokiGrid(difficulty),
+            unresolved_count: state.unresolved_count - 32,
+            grid: fetchSudokiGrid(),
             mistakes_count: 0,
           };
         });
@@ -92,22 +83,6 @@ export const useGrid = create<GridStore>()(
         return set((state) => {
           state.grid[block_index][cell_index].is_value_guessed = false;
           state.grid[block_index][cell_index].guessed_value = 0;
-        });
-      },
-      clearGrid: () => {
-        return set((state) => {
-          const block_indexes = (Object.keys(
-            state.grid,
-          ) as unknown) as CellIndexType[];
-
-          block_indexes.forEach((block_index) => {
-            Object.entries(get().grid[block_index]).forEach((_, cell_index) => {
-              if (get().grid[block_index][cell_index].is_resolved) return;
-
-              get().grid[block_index][cell_index].guessed_value = 0;
-              get().grid[block_index][cell_index].is_value_guessed = false;
-            });
-          });
         });
       },
     };

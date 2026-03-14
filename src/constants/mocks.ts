@@ -1,6 +1,5 @@
 import type { IGrid } from '~/types';
 
-import { RESOLVED_CELLS_COUNT } from './sudoku';
 import SudokuSolver from '~/sudoku-solver';
 
 const b = [
@@ -15,10 +14,8 @@ const b = [
   [null, null, null, null, null, null, null, null, null],
 ] as (null | number)[][];
 
-export const SUDOKU_GRID_MOCK = (
-  difficulty: 'easy' | 'medium' | 'hard',
-): IGrid => {
-  let resolved_cells_left = RESOLVED_CELLS_COUNT[difficulty];
+export const fetchSudokiGrid = (): IGrid => {
+  let resolved_cells_left = 32;
   const solver = new SudokuSolver(b);
   solver.solve();
 
@@ -53,9 +50,4 @@ export const SUDOKU_GRID_MOCK = (
 
       return grid;
     }, {});
-};
-export const fetchSudokiGrid = (
-  difficulty: 'easy' | 'medium' | 'hard',
-): IGrid => {
-  return SUDOKU_GRID_MOCK(difficulty);
 };
