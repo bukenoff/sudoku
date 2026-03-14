@@ -56,8 +56,6 @@ export const SUDOKU_GRID_MOCK = (
 };
 export const fetchSudokiGrid = (
   difficulty: 'easy' | 'medium' | 'hard',
-): Promise<IGrid> => {
-  return new Promise((resolve) =>
-    setTimeout(() => resolve(SUDOKU_GRID_MOCK(difficulty)), 1000),
-  );
+): IGrid => {
+  return SUDOKU_GRID_MOCK(difficulty);
 };

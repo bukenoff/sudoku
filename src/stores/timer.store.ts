@@ -1,55 +1,67 @@
-import { action, observable, makeObservable } from 'mobx';
+import { create } from 'zustand';
 
-export class TimerStore {
-  interval: ReturnType<typeof setInterval> | null = null;
-  time = 0;
-  is_paused = true;
-  is_stopped = true;
-
-  constructor() {
-    makeObservable(this, {
-      time: observable,
-      is_paused: observable,
-      is_stopped: observable,
-      incrementTime: action,
-      pause: action,
-      reset: action,
-      unpause: action,
-      stop: action,
-    });
-  }
-
-  incrementTime = (): void => {
-    this.time += 1;
-  };
-
-  pause = (): void => {
-    this.is_paused = true;
-    this.is_stopped = true;
-
-    if (this.interval) {
-      clearInterval(this.interval);
-    }
-  };
-
-  reset = (): void => {
-    this.time = 0;
-    if (this.interval) {
-      clearInterval(this.interval);
-    }
-  };
-
-  unpause = (): void => {
-    this.interval = setInterval(this.incrementTime, 1000);
-    this.is_paused = false;
-    this.is_stopped = false;
-  };
-
-  stop = (): void => {
-    this.is_stopped = true;
-
-    if (this.interval) {
-      clearInterval(this.interval);
-    }
-  };
+interface TimerStore {
+  interval: null | number;
+  time: number;
+  is_paused: boolean;
+  is_stopped: boolean;
+  incrementTime: VoidFunction;
+  pause: VoidFunction;
+  reset: VoidFunction;
+  unpause: VoidFunction;
+  stop: VoidFunction;
 }
+
+export const useTimer = create<TimerStore>((set) => ({
+  interval: null,
+  time: 0,
+  is_paused: true,
+  is_stopped: true,
+  incrementTime: () => set((state) => ({ time: state.time + 1 })),
+  pause: () => {
+    set((state) => {
+      if (state.interval) {
+        clearInterval(state.interval);
+      }
+
+      return {
+        is_paused: true,
+        is_stopped: true,
+        interval: null,
+      };
+    });
+  },
+  reset: () => {
+    set((state: any) => {
+      if (state.interval) {
+        clearInterval(state.interval);
+      }
+
+      return { time: 0, interval: null };
+    });
+  },
+  unpause: () => {
+    set(() => {
+      return {
+        interval: setInterval(
+          () => set((state) => ({ time: state.time + 1 })),
+          1000,
+        ),
+        is_paused: false,
+        is_stopped: false,
+      };
+    });
+  },
+  stop: () => {
+    set((state) => {
+      if (state.interval) {
+        clearInterval(state.interval);
+      }
+
+      return {
+        is_stopped: true,
+        interval: null,
+      };
+    });
+  },
+}));
