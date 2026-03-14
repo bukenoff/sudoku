@@ -1,64 +1,46 @@
 import React, { FC, useEffect } from 'react';
-import { Link, useLocation, NavLink } from 'react-router-dom';
 import { BiPause, BiRevision, BiX, BiPlay } from 'react-icons/bi';
-import { observer } from 'mobx-react-lite';
-
-import { useStores } from '~/stores/stores.provider';
-import { HOME, SCORES } from '~/constants';
 
 import * as Styled from './Navbar.styles';
+import { useGrid, useTimer } from '~/stores';
 
-export const Navbar: FC = observer(() => {
-  const { pathname } = useLocation();
-  const {
-    grid_store: { fetchGrid, clearGrid, mistakes_count, difficulty },
-    timer_store: { is_paused, pause, unpause, time, reset },
-  } = useStores();
+export const Navbar: FC = () => {
+  const grid_store = useGrid();
+  const timer_store = useTimer();
 
-  const is_game_page = pathname.includes('/game');
+  const is_game_page = true;
 
   const onPlayPauseClick = () => {
-    if (is_paused) {
-      unpause();
+    if (timer_store.is_paused) {
+      timer_store.unpause();
     } else {
-      pause();
+      timer_store.pause();
     }
   };
 
   const startNewGame = () => {
-    !!difficulty && fetchGrid(difficulty);
+    !!grid_store.difficulty && grid_store.fetchGrid('easy');
   };
 
   useEffect(() => {
     if (is_game_page) return;
-    reset();
+    timer_store.reset();
   }, [is_game_page]);
 
   return (
     <Styled.Root>
-      <Styled.HomeLink>
-        <Link to={HOME}>Sudoku</Link>
-      </Styled.HomeLink>
       <Styled.RightPartWrapper>
-        <Styled.ScoresLink>
-          <NavLink
-            to={SCORES}
-            className={({ isActive }) => (isActive ? 'active' : '')}
-          >
-            Best Scores
-          </NavLink>
-        </Styled.ScoresLink>
         {is_game_page && (
           <>
-            <span style={{ width: 80 }}>Time: {time}</span>
-            <span>Mistakes made: {mistakes_count}</span>
+            <span style={{ width: 80 }}>Time: {timer_store.time}</span>
+            <span>Mistakes made: {grid_store.mistakes_count}</span>
             <Styled.GameActionsWrapper>
               <Styled.GameActionButton
                 type="button"
                 className="pause"
                 onClick={onPlayPauseClick}
               >
-                {is_paused ? (
+                {timer_store.is_paused ? (
                   <>
                     <BiPlay /> Play
                   </>
@@ -71,7 +53,7 @@ export const Navbar: FC = observer(() => {
               <Styled.GameActionButton
                 type="button"
                 className="clear"
-                onClick={clearGrid}
+                onClick={grid_store.clearGrid}
               >
                 <BiX />
                 Clear Grid
@@ -90,4 +72,4 @@ export const Navbar: FC = observer(() => {
       </Styled.RightPartWrapper>
     </Styled.Root>
   );
-});
+};

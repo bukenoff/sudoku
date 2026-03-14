@@ -1,16 +1,18 @@
 import React, { FC } from 'react';
-import { observer } from 'mobx-react-lite';
 
 import type { IBlock } from '~/types';
 
 import Cell from '../Cell';
 import * as Styled from './Block.styles';
+import { useGrid } from '~/stores';
 
 export interface BlockProps {
   block: IBlock;
 }
 
-export const Block: FC<BlockProps> = observer(({ block }) => {
+export const Block: FC<BlockProps> = ({ block }) => {
+  const grid_store = useGrid();
+
   return (
     <Styled.Root>
       {Object.values(block).map((cell) => (
@@ -22,8 +24,10 @@ export const Block: FC<BlockProps> = observer(({ block }) => {
           block_index={cell.block_index}
           cell_index={cell.cell_index}
           is_highlighted={cell.is_highlighted}
+          setGuessedValue={grid_store.setGuessedValue}
+          clearGuessedValue={grid_store.clearGuessedValue}
         />
       ))}
     </Styled.Root>
   );
-});
+};

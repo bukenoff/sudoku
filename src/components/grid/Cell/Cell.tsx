@@ -14,6 +14,8 @@ export interface CellProps {
   block_index: ICell['block_index'];
   cell_index: ICell['cell_index'];
   is_highlighted: ICell['is_highlighted'];
+  setGuessedValue: any;
+  clearGuessedValue: any;
 }
 
 export const Cell: FC<CellProps> = memo(
@@ -24,10 +26,9 @@ export const Cell: FC<CellProps> = memo(
     cell_index,
     is_resolved,
     is_highlighted,
+    setGuessedValue,
+    clearGuessedValue,
   }) => {
-    const {
-      grid_store: { setGuessedValue, clearGuessedValue },
-    } = useStores();
     const [is_selected, setSelected] = useState(false);
     const display_digits_selection = is_resolved === false && is_selected;
 

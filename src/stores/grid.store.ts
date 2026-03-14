@@ -101,11 +101,11 @@ export const useGrid = create<GridStore>()(
           ) as unknown) as CellIndexType[];
 
           block_indexes.forEach((block_index) => {
-            Object.values(state.grid[block_index]).forEach((_, cell_index) => {
-              if (state.grid[block_index][cell_index].is_resolved) return;
+            Object.entries(get().grid[block_index]).forEach((_, cell_index) => {
+              if (get().grid[block_index][cell_index].is_resolved) return;
 
-              state.grid[block_index][cell_index].guessed_value = 0;
-              state.grid[block_index][cell_index].is_value_guessed = false;
+              get().grid[block_index][cell_index].guessed_value = 0;
+              get().grid[block_index][cell_index].is_value_guessed = false;
             });
           });
         });
