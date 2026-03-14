@@ -1,29 +1,44 @@
-import { it, describe, expect } from 'vitest';
+import { it, describe, expect, beforeEach } from 'vitest';
 
-import { RESOLVED_CELLS_COUNT, TOTAL_CELLS_COUNT } from '~/constants';
+import { TOTAL_CELLS_COUNT } from '~/constants';
 
-import { GridStore } from '../grid.store';
-import { TimerStore } from '../timer.store';
+import { useGrid } from '../grid.store';
+import { useTimer } from '../timer.store';
+import { IGrid } from '~/types';
+
+beforeEach(() => {
+  useGrid.setState({
+    grid: {} as IGrid,
+    is_fetching: false,
+    mistakes_count: 0,
+    unresolved_count: TOTAL_CELLS_COUNT,
+    is_resolved: false,
+  });
+
+  useTimer.setState({
+    interval: null,
+    time: 0,
+    is_paused: true,
+    is_stopped: true,
+  });
+});
 
 describe('Grid store:', () => {
-  it('should make grid', async () => {
-    const timer_store = new TimerStore();
-    const grid_store = new GridStore(timer_store);
-
-    await grid_store.fetchGrid('easy');
-    const is_grid_not_empty = Boolean(Object.keys(grid_store.grid).length);
+  it('should make grid', () => {
+    useGrid.getState().fetchGrid();
+    const is_grid_not_empty = Boolean(
+      Object.keys(useGrid.getState().grid).length,
+    );
 
     expect(is_grid_not_empty).toBe(true);
   });
 
-  it('should initialize easy grid with correct unresolved count', async () => {
-    const timer_store = new TimerStore();
-    const grid_store = new GridStore(timer_store);
+  it('should initialize easy grid with correct unresolved count', () => {
+    useGrid.getState().fetchGrid();
+    const expected_unresolved_count = TOTAL_CELLS_COUNT - 32;
 
-    await grid_store.fetchGrid('easy');
-    const expected_unresolved_count =
-      TOTAL_CELLS_COUNT - RESOLVED_CELLS_COUNT['easy'];
-
-    expect(expected_unresolved_count).toEqual(grid_store.unresolved_count);
+    expect(expected_unresolved_count).toEqual(
+      useGrid.getState().unresolved_count,
+    );
   });
 });

@@ -11,7 +11,7 @@ export const GamePage: FC = () => {
   const timer_store = useTimer();
 
   useEffect(() => {
-    grid_store.fetchGrid('easy');
+    grid_store.fetchGrid();
   }, []);
 
   return (

@@ -6,7 +6,7 @@ import type { CellIndexType, ICell, IGrid } from '~/types';
 
 import { useTimer } from './timer.store';
 
-interface GridStore {
+export interface GridStore {
   grid: IGrid;
   is_fetching: boolean;
   mistakes_count: number;
