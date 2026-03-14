@@ -1,7 +1,6 @@
 import React, { FC, KeyboardEventHandler, memo, useState } from 'react';
 import ClickAwayListener from 'react-click-away-listener';
 
-import { useStores } from '~/stores';
 import type { ICell } from '~/types';
 
 import DigitsSelection from '../DigitsSelection';
